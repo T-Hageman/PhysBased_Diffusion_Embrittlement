@@ -1,0 +1,15 @@
+#!/bin/bash -l
+
+
+#PBS -l select=1:ncpus=8:mem=30gb
+#PBS -l walltime=71:30:00
+
+#PBS -N PF_Static
+#PBS -J 1-8
+
+# Load modules for any applications
+module load matlab/R2021a
+
+# Run program
+cd /rds/general/user/thageman/ephemeral/PhaseField
+matlab -batch "DoSweep($PBS_ARRAY_INDEX)" -logfile "./Logs/Static$PBS_ARRAY_INDEX.out"

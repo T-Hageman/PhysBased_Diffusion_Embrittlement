@@ -1,0 +1,96 @@
+function PlotNodal(obj, dofName, dispscale, plotloc)
+    dxTypes = obj.dofSpace.getDofType({"dx";"dy";dofName});
+
+
+    for g=1:length(obj.mesh.Elementgroups)
+        if (obj.mesh.Elementgroups{g}.name == plotloc)
+
+            if (obj.mesh.Elementgroups{g}.type == "Q9")
+                for el=1:size(obj.mesh.Elementgroups{g}.Elems, 1)
+                    elnodes = obj.mesh.Elementgroups{g}.Elems(el,:);
+
+                    order = [1 2 3 6 9 8 7 4];
+
+					zdofs = obj.dofSpace.getDofIndices(dxTypes(3), elnodes);
+					if (dispscale>0)
+                    	xdofs = obj.dofSpace.getDofIndices(dxTypes(1), elnodes);
+                    	ydofs = obj.dofSpace.getDofIndices(dxTypes(2), elnodes);
+
+                    	X(el,:) = obj.mesh.Nodes(elnodes(order),1)+dispscale*obj.StateVec(xdofs(order));
+                    	Y(el,:) = obj.mesh.Nodes(elnodes(order),2)+dispscale*obj.StateVec(ydofs(order));
+					else
+                    	X(el,:) = obj.mesh.Nodes(elnodes(order),1);
+                    	Y(el,:) = obj.mesh.Nodes(elnodes(order),2);
+					end
+
+
+                    Z(el,:) = obj.StateVec(zdofs(order));
+                end
+                patch(X',Y',Z','EdgeColor','None','FaceColor','interp');
+				%fill3(X',Y',Z',Z','FaceColor','interp');
+
+                hold on
+                colorbar
+			end
+			if (obj.mesh.Elementgroups{g}.type == "T6")
+                for el=1:size(obj.mesh.Elementgroups{g}.Elems, 1)
+                    elnodes = obj.mesh.Elementgroups{g}.Elems(el,:);
+
+                    order = [1 4 2 5 3 6];
+
+					zdofs = obj.dofSpace.getDofIndices(dxTypes(3), elnodes);
+					if (dispscale>0)
+                    	xdofs = obj.dofSpace.getDofIndices(dxTypes(1), elnodes);
+                    	ydofs = obj.dofSpace.getDofIndices(dxTypes(2), elnodes);
+
+                    	X(el,:) = obj.mesh.Nodes(elnodes(order),1)+dispscale*obj.StateVec(xdofs(order));
+                    	Y(el,:) = obj.mesh.Nodes(elnodes(order),2)+dispscale*obj.StateVec(ydofs(order));
+					else
+                    	X(el,:) = obj.mesh.Nodes(elnodes(order),1);
+                    	Y(el,:) = obj.mesh.Nodes(elnodes(order),2);
+					end
+
+                    Z(el,:) = obj.StateVec(zdofs(order));
+                end
+                patch(X',Y',Z','EdgeColor','None','FaceColor','interp');
+				%fill3(X',Y',Z',Z','FaceColor','interp');
+
+                hold on
+                colorbar
+            end
+            if (obj.mesh.Elementgroups{g}.type == "L3" || obj.mesh.Elementgroups{g}.type == "LI6")
+                for el=1:size(obj.mesh.Elementgroups{g}.Elems, 1)
+                    elnodes = obj.mesh.Elementgroups{g}.Elems(el,:);
+
+                    zdofs = obj.dofSpace.getDofIndices(dxTypes(3), elnodes(1:3));
+
+                    order = [1 2 3];
+                    X(el,:) = [obj.mesh.Nodes(elnodes(order),1);NaN];
+                    Y(el,:) = [obj.mesh.Nodes(elnodes(order),2);NaN];
+                    Z(el,:) = [obj.StateVec(zdofs(order));NaN];
+                end
+                patch(X',Y',Z',Z','EdgeColor','interp','FaceColor','None','Marker','o','MarkerFaceColor','flat');
+                hold on
+                colorbar
+			end
+			if (obj.mesh.Elementgroups{g}.type == "L3B" || obj.mesh.Elementgroups{g}.type == "LI6")
+                for el=1:size(obj.mesh.Elementgroups{g}.Elems, 1)
+                    elnodes = obj.mesh.Elementgroups{g}.Elems(el,:);
+
+                    zdofs = obj.dofSpace.getDofIndices(dxTypes(3), elnodes(1:3));
+
+                    order = [1 2 3];
+                    X(el,:) = [obj.mesh.Nodes(elnodes(order),1);NaN];
+                    Y(el,:) = [obj.mesh.Nodes(elnodes(order),2);NaN];
+                    Z(el,:) = [obj.StateVec(zdofs(order));NaN];
+					Z(el,2) = 
+                end
+                patch(X',Y',Z',Z','EdgeColor','interp','FaceColor','None','Marker','o','MarkerFaceColor','flat');
+                hold on
+                colorbar
+            end
+        end
+    end
+end
+
+
