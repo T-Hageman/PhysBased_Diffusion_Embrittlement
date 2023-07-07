@@ -1,36 +1,27 @@
 classdef Mesh < handle
-    %MESH Summary of this class goes here
-    %   Detailed explanation goes here
+    %MESH Class that handles the geometric description and discretisation
+	% of the domain
     
     properties
-        Area
-        Elementgroups
-        Nodegroups
-        Nodes
-        ipcount1D
-        zeroWeight
-        Tjunction
+        Area			%Vector containing the area/length of each element group
+        Elementgroups	%Structure containing all element groups (in turn containing the base element shapes and elements)
+        Nodegroups		%Nodegroups
+        Nodes			%Vector containing the coordinates for all nodes
+        ipcount1D		% number of one-dimensional integration point
+        zeroWeight		%flag indicating whether zero-weight integration points have been added
     end
     
     methods
-        [Nodes, Egroups, Ngroups, Area, rect] = TFrac_Generator(obj, props);
+		% functions defined in other files
         f1 = plot(obj, plotnodes, plotelems, plotnames);
         xy = getIPCoords(obj, group, elems);
         check(obj);
         [N, G, w] = getVals(obj, group, elem);
 		G2 = getG2(obj, group, elem);
         [n, t] = getNormals(obj, group, elem);
-        elems = getConnected(obj, groupnum, node)
-        Propagate_Disc(obj, physics, tipnode, direction);
         
         function obj = Mesh(inProps)
-            %MESH Construct an instance of this class
-            %   Detailed explanation goes here
-            if (inProps.type == "T-Frac")
-                [obj.Nodes, obj.Elementgroups, obj.Nodegroups, obj.Area, rectangular] = obj.TFrac_Generator(inProps);
-                
-                obj.Tjunction = [];
-            end
+             %MESH Construct an instance of this class
             if (inProps.type == "Square")
                 [obj.Nodes, obj.Elementgroups, obj.Nodegroups, obj.Area, rectangular] = obj.Square_Generator(inProps);
 			end
@@ -54,6 +45,7 @@ classdef Mesh < handle
         end
         
         function groupIndex = getGroupIndex(obj, groupname)
+			% returns the element group index for a string "groupname"
             groupIndex = -1;
             for i=1:length(obj.Elementgroups)
                if (groupname == obj.Elementgroups{i}.name)
@@ -67,6 +59,7 @@ classdef Mesh < handle
 		end
 
 		function groupIndex = getNodeGroupIndex(obj, groupname)
+			% returns the node group index for a string "groupname"
             groupIndex = -1;
             for i=1:length(obj.Nodegroups)
                if (groupname == obj.Nodegroups{i}.name)
@@ -80,10 +73,13 @@ classdef Mesh < handle
         end
         
         function myNode = getNodes(obj, group, elem)
+			%Gets the nodes corresponding to the element number elem within
+			%group group
             myNode = obj.Elementgroups{group}.Elems(elem,:);
         end
         
         function nds = GetAllNodesForGroup(obj, groupindex)
+			%Gets all nodes for an element group
             myElems = obj.Elementgroups{groupindex}.Elems;
             nds = unique(reshape(myElems, [], 1));
         end

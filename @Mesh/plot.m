@@ -1,4 +1,7 @@
 function f1 = plot(obj, plotnodes, plotelems, plotnames)
+	%PLOT Plot the used mesh to a new window, and show node and element
+	%numbering (extremely slow, use for debugging only)
+
     f1 = figure();
     if (plotnodes)
         plot(obj.Nodes(:,1),obj.Nodes(:,2), 'k*');

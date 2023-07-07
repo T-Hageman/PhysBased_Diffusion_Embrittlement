@@ -67,32 +67,19 @@ classdef L3B
         end
         
         function [n, t] = getNormals(obj, X, Y)
-            if obj.rectangular 
-                dx = X(3)-X(1);
-                dy = Y(3)-Y(1);
-                
-                n = [dy, -dx]./(dy^2+dx^2)^0.5;
-                t = [-n(2), n(1)];
-                
-                n = ones(obj.ipcount1D,1)*n;
-                t = ones(obj.ipcount1D,1)*t;
-            else
-                
-                %% still to do
+            dx = X(3)-X(1);
+            dy = Y(3)-Y(1);
             
-            end
+            n = [dy, -dx]./(dy^2+dx^2)^0.5;
+            t = [-n(2), n(1)];
             
+            n = ones(obj.ipcount1D,1)*n;
+            t = ones(obj.ipcount1D,1)*t;
         end
         
         function xy = getIPGlobal(obj, X,Y)
-            
-            if obj.rectangular 
-                xy(1,:) = X(1) + (0.5*(obj.xbase+1))*(X(3)-X(1));
-                xy(2,:) = Y(1) + (0.5*(obj.xbase+1))*(Y(3)-Y(1));
-            else
-                %% not implemented
-            end
-
+            xy(1,:) = X(1) + (0.5*(obj.xbase+1))*(X(3)-X(1));
+            xy(2,:) = Y(1) + (0.5*(obj.xbase+1))*(Y(3)-Y(1));
         end
  
     end

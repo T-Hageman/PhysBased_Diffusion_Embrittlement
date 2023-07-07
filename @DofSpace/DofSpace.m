@@ -1,20 +1,21 @@
 classdef DofSpace < handle
-    %DOFSPACE Summary of this class goes here
-    %   Detailed explanation goes here
+    %DOFSPACE Management of degrees of freedom
+    %   Class which keeps track of added degrees of freedom, giving index
+	%   of dof for a dof name, and location for a combination of index and
+	%   node.
     
     properties
-        mesh
-        DofTypes
-        DofSteps
-        DofNumbering	%node, dofType
-        NDofs			%step
-		NSteps
+        mesh			%pointer to mesh object
+        DofTypes		%String vector containing names of each dof type
+        DofSteps		%int vector containing the steps in which each dof type is solved for
+        DofNumbering	%node, dofType -> dofnumber
+        NDofs			%total amout of degrees of freedom
+		NSteps			%number of solution steps
     end
     
     methods
         function obj = DofSpace(mesh, dofs_in)
             %DOFSPACE Construct an instance of this class
-            %   Detailed explanation goes here
             
             obj.NSteps = max(dofs_in.Step);
 
@@ -26,6 +27,8 @@ classdef DofSpace < handle
         end
 
         function addDofs(obj, dofIndices, nodeIndex)
+			% Adds degrees of freedom for type "dofIndices" to the nodes
+			% "nodeIndex"
 
             for i=1:length(dofIndices)
                 dofStep = obj.DofSteps(dofIndices(i));
@@ -46,6 +49,9 @@ classdef DofSpace < handle
         end
         
 		function [DofTypeIndex, DofStepIndex] = getDofType(obj, dofnames)
+			% returns the dof type index for pre-existing degrees of
+			% freedom
+
             DofTypeIndex = zeros(length(dofnames),1);
 			DofStepIndex = zeros(length(dofnames),1);
 
@@ -60,7 +66,9 @@ classdef DofSpace < handle
         end
         
 		function DofIndices = getDofIndices(obj, dofType, NodeIndices)
-           
+           % gets the indices for a combination of degree of freedom
+		   % "doftype" and nodes "NodeIndices"  
+		   
 			DofIndices = obj.DofNumbering(NodeIndices, dofType);
 			if (isempty(DofIndices==0) && length(DofIndices)>=1)
 				disp("error here (dofspace)") 

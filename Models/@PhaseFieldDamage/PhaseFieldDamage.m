@@ -328,10 +328,6 @@ classdef PhaseFieldDamage < BaseModel
             	tElapsed = toc(t);
             	fprintf("            (Assemble time:"+string(tElapsed)+")\n");
 				fprintf("Fracture Length: "+string(fraccheck)+"\n");
-				figure(75521)
-				clf
-				physics.PlotNodal("phi",0, "Internal");
-				drawnow()
 
 				obj.Hist = HNew;
 			end

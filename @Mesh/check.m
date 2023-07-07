@@ -1,4 +1,7 @@
 function check(obj)
+	%CHECK Calculate the area of the mesh and print it to confirm shape
+	%functions for all elements can be evaluated, and (manually) confirm
+	%that the total mesh area is correct
 
     disp("Checking mesh");
 

@@ -1,27 +1,35 @@
 function Solve(obj)
+	%SOLVE solves a single time increment for the nonlinear system of
+	%equations through a Newton-Raphson procedure, combined with a
+	%staggered solution scheme
+
 	outerStop = false;
 	outerit = 0;
 	err0_array = [];
 
-	while outerStop==false
+	while outerStop==false		%Staggered scheme convergence loop
 		outerit = outerit + 1;
 		fprintf("Loop " + string(outerit) + ":\n");
 
-		for stp=1:obj.NSteps
+		for stp=1:obj.NSteps	%staggered scheme steps
 			fprintf("  SubStep " + string(stp) + "\n");
     		stop = false;
     		it = 0;
 		
 			stepnum = size(obj.convergence_log, 1)+1;
-			%cf = figure(9731);
  		
+			%perform once-per-step calculations
 			obj.physics.OncePerStep(stp);
+
+			%assemble system matrices
     		obj.physics.Assemble(stp);
     		obj.physics.Constrain(stp);
+
+
     		recalc_pre=true;
     		En_err0 = -1;
     		curr_max_it = obj.maxIt;
-    		while(stop == false)
+    		while(stop == false)	%Newton-Raphson solver loop
 		
         		fprintf("    Solving it:" + string(it) + "      ");
         		tsolve = tic;
@@ -32,7 +40,7 @@ function Solve(obj)
             		%recalc_pre = false;
         		end
 		
-        		if false
+        		if false   %use preconditioned system
             		d = -R*P*obj.physics.fint{stp};
             		B = R*P*obj.physics.K{stp}*C;
 					%cond_num(it+1)=condest(B);
@@ -43,13 +51,14 @@ function Solve(obj)
 						dy = gmres(B,d,[],1e-4,500,L,U);
 					end
             		dx = C*dy;
-        		else
+				else %do not allow any preconditioning
             		dx = -obj.physics.K{stp}\obj.physics.fint{stp};
         		end
         		tsolve = toc(tsolve);
         		fprintf("        (Solver time:"+string(tsolve)+")\n");
 				%fprintf("Conditioning numbers: "+string(cond_num(it+1))+"\n");
 		
+				%line-search
         		if (obj.linesearch && it>-1)
             		e0 = obj.physics.fint{stp}'*dx;
             		obj.physics.Update(dx, stp);
@@ -66,9 +75,11 @@ function Solve(obj)
             		obj.physics.Update(dx, stp);
         		end
         		
-        		% convergence
+        		% re-assemble system
         		obj.physics.Assemble(stp);
         		obj.physics.Constrain(stp);
+
+				% convergence check
         		if (En_err0 < 0)
             		En_err0 = sum(abs(obj.physics.fint{stp}.*dx));
             		En_err = En_err0;
@@ -89,17 +100,7 @@ function Solve(obj)
         		
         		it=it+1;
         		if (it>curr_max_it || En_err_n<obj.Conv || En_err<obj.tiny)
-            		%obj.physics.Commit("Pathdep");
-            		%irr = obj.physics.Irreversibles();
-            		%if (irr == false)
-                		stop = true;
-	%             	else
-	%                 	obj.physics.Assemble();
-	%                 	obj.physics.Constrain();
-	%                 	recalc_pre = true;
-	%                 	En_err0 = -1;
-	%                 	curr_max_it = it + obj.maxIt;
-	%             	end
+                	stop = true;
         		end
 			end
 		end
@@ -110,11 +111,8 @@ function Solve(obj)
 
 	end
     
+	%commit time and path-dependent states
 	obj.physics.Commit("Pathdep");
     obj.physics.Commit("Timedep");
-    %figure(9731);
-	%semilogy(obj.convergence_log(stepnum,1:it));
-	%hold on
-	%drawnow();
 end
 

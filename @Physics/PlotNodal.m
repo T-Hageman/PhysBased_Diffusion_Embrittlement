@@ -1,6 +1,9 @@
 function PlotNodal(obj, dofName, dispscale, plotloc)
-    [dxTypes, dxSteps] = obj.dofSpace.getDofType({"dx";"dy";dofName});
+	%Plot nodal data for element group with the name plotloc, for a provided string indicating the dof name, and
+	%deforming the plotted results based on the displacemenets with scale
+	%dispscale
 
+    [dxTypes, dxSteps] = obj.dofSpace.getDofType({"dx";"dy";dofName});
 
     for g=1:length(obj.mesh.Elementgroups)
         if (obj.mesh.Elementgroups{g}.name == plotloc)

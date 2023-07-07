@@ -1,5 +1,6 @@
 function PlotIP(obj, varName, plotloc)
-
+	%PLOTIP Plots integration-point level data
+	
     for g=1:length(obj.mesh.Elementgroups)
         if (obj.mesh.Elementgroups{g}.name == plotloc)
             for e=1:size(obj.mesh.Elementgroups{g}.Elems, 1)

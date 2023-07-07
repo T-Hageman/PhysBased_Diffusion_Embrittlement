@@ -5,7 +5,6 @@ function [Nodes, Elementgroups, Nodegroups, Area, rect] = Square_Generator(obj, 
     Ly = props.Ly;  
     Nx = props.Nx;  
     Ny = props.Ny;  
-    nfrac = props.nfrac; 
 
     nnodes = 0;
     nnodes_per_row = Nx*2+1;

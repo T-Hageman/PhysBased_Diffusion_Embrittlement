@@ -1,6 +1,6 @@
 function [G2] = getG2(obj, group, elem)
-    % returns shape functions for the element in "group" with number "elem"
-    % in the format: N(ip, shape), G(ip, shape, dx/dy), w(ip)
+    %GETG2 returns second gradient of shape functions for the element in "group" with number "elem"
+    % in the format: G2(ip, shape, dxx/dyy/dxy)
     
     
     myNode = obj.Elementgroups{group}.Elems(elem,:);
