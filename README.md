@@ -1,6 +1,6 @@
 # Physics-based diffusion within cracks and hydrogen embrittlement simulation
 
-<img src="Documentation/Figures/Generic_Domain_DOFs.eps" width="50%" height="50%">
+<img src="Documentation/Figures/Generic_Domain_DOFs.png" width="50%" height="50%">
 
 If this code is used, please cite XXXXXXXXX
 
