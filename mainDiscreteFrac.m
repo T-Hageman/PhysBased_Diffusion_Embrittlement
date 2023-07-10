@@ -12,7 +12,7 @@ function [physics, tvec, CL_vec]  = mainDiscreteFrac(irun)
 	   	1e1,	7e5,	0,		0; 
 	   	1e-8,	1e-13,	0.5,	0;
 	   	1e-10,	1e-14,	0.3,	0;
-	   	3e-5/(2*96485.3329),3e-5/(2*96485.3329), 0.5, -0.4]; %3e-7
+	   	3e-5/(2*96485.3329),3e-5/(2*96485.3329), 0.5, -0.4]; 
 	sname = "Discrete_"+string(Uextern);
 	
 	maxNumCompThreads(8);

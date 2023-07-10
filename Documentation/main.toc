@@ -1,0 +1,21 @@
+\contentsline {section}{\numberline {1}Introduction}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Basic usage}{2}{subsection.1.1}%
+\contentsline {section}{\numberline {2}Summary of included files}{3}{section.2}%
+\contentsline {subsection}{\numberline {2.1}main.m}{3}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Models}{3}{subsection.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.1}BaseModel}{4}{subsubsection.2.2.1}%
+\contentsline {subsubsection}{\numberline {2.2.2}Constrainer}{4}{subsubsection.2.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.3}LinearElastic}{4}{subsubsection.2.2.3}%
+\contentsline {subsubsection}{\numberline {2.2.4}HydrogenDiffusionUnDamaged}{5}{subsubsection.2.2.4}%
+\contentsline {subsubsection}{\numberline {2.2.5}Electrolyte}{5}{subsubsection.2.2.5}%
+\contentsline {subsubsection}{\numberline {2.2.6}ElectrolyteInterface}{6}{subsubsection.2.2.6}%
+\contentsline {subsubsection}{\numberline {2.2.7}HydrogenDiffusion}{7}{subsubsection.2.2.7}%
+\contentsline {subsubsection}{\numberline {2.2.8}PhasefieldDamage}{7}{subsubsection.2.2.8}%
+\contentsline {subsubsection}{\numberline {2.2.9}PhasefieldElectrolyte}{7}{subsubsection.2.2.9}%
+\contentsline {subsection}{\numberline {2.3}Mesh}{7}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Shapes}{8}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Physics}{8}{subsection.2.5}%
+\contentsline {subsection}{\numberline {2.6}Dofspace}{9}{subsection.2.6}%
+\contentsline {subsection}{\numberline {2.7}Solver}{9}{subsection.2.7}%
+\contentsline {section}{\numberline {3}Specifics: Fracture opening height}{10}{section.3}%
+\contentsline {section}{\numberline {4}Post-Processing and sample results}{10}{section.4}%
