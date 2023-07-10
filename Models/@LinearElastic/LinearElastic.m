@@ -1,21 +1,27 @@
 classdef LinearElastic < BaseModel
-    %LINEARELASTIC Summary of this class goes here
-    %   Detailed explanation goes here
+    %LINEARELASTIC Physics for solving a linear-elastic momentum balance.
+	%This model calculates the tangential stiffness matrix once, then saves
+	%a local copy that is applied during matri assembly.
+	%Required model inputs:
+    %	physics_in{1}.type = "LinearElastic";	
+    %	physics_in{1}.Egroup = "Metal";	
+    %	physics_in{1}.young = 200e9;	% Youngs modulus [Pa]
+    %	physics_in{1}.poisson = 0.3;	% Poisson ratio [-]
     
     properties
-        mesh
-        myName
-        myGroup
-        myGroupIndex
-        dofSpace
-        dofTypeIndices
+        mesh			%Pointer to mesh object
+        myName			%String with the name of this model
+        myGroup			%String indicating the element group this model operates on
+        myGroupIndex	%Index of element group
+        dofSpace		%Pointer to degree of freedom object
+        dofTypeIndices	%Indices of degrees of freedom associated with this model
         
-        poisson
-        young
-        D_el
-        myK
+        poisson	%Poisson ratio [-]
+        young	%youngs modulus [Pa]
+        D_el	%Linear-elastic-plane-strain-stiffness matrix
+        myK		%Locally saved tangential matrix
 
-		dx_Step
+		dx_Step %step in which displacements are resolved
     end
     
     methods

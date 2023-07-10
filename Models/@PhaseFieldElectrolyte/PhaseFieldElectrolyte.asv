@@ -263,8 +263,21 @@ classdef PhaseFieldElectrolyte < BaseModel
 				h_est = h_est;
 				Fh = griddedInterpolant(y_eval, h_est);
 			else
-
+				
 			end
+
+
+
+
+
+			x_eval = linspace(0,xmax,1000);  ny = 1000;
+			h_est = zeros(size(x_eval));
+			for iy=0:ny
+				y_eval = 0*x_eval+iy*ymax./ny;
+				h_est = h_est + abs(F_ux(x_eval,y_eval).*F_fx(x_eval,y_eval)*0 + F_uy(x_eval,y_eval).*F_fy(x_eval,y_eval))*ymax./ny;
+			end
+			h_est = h_est;
+			Fh = griddedInterpolant(x_eval, h_est);
 			
 			for n_el=1:length(obj.ActiveElems)
 				el = obj.ActiveElems(n_el);
@@ -272,11 +285,7 @@ classdef PhaseFieldElectrolyte < BaseModel
 				
 				for ip=1:obj.mesh.ipcount1D^2
 					coords_ip = coords(:,ip);
-					if obj.propDir == "Hor"
-						obj.Heights(n_el,ip) = Fh(coords_ip(1));
-					else
-						obj.Heights(n_el,ip) = Fh(coords_ip(2));
-					end
+					obj.Heights(n_el,ip) = Fh(coords_ip(1));
 					obj.Normals(n_el,ip,1) = F_fx(coords_ip(1),coords_ip(2));
 					obj.Normals(n_el,ip,2) = F_fy(coords_ip(1),coords_ip(2));
 					obj.Normals(n_el,ip,:) = obj.Normals(n_el,ip,:)/(sqrt(obj.Normals(n_el,ip,1)^2+obj.Normals(n_el,ip,2)^2));
@@ -288,6 +297,12 @@ classdef PhaseFieldElectrolyte < BaseModel
 			end
 
 			obj.plotHeightData(x_eval, h_est);
+
+			%% still to actually calculate
+% 			obj.Heights = zeros(length(obj.ActiveElems), obj.mesh.ipcount1D^2)+obj.h0;
+% 			obj.Normals = zeros(length(obj.ActiveElems), obj.mesh.ipcount1D^2,2);
+% 			obj.Normals(:,:,1) = 0;
+% 			obj.Normals(:,:,2) = 1;
 		end
 
         function getKf(obj, physics, stp)
@@ -314,7 +329,7 @@ classdef PhaseFieldElectrolyte < BaseModel
             	SvecOld = physics.StateVec_Old;
 
 
-            	parfor n_el=1:length(obj.ActiveElems)
+            	parfor n_el=1:length(obj.ActiveElems)   %PARFOR
 					el = obj.ActiveElems(n_el);
 
                 	Elem_Nodes = obj.mesh.getNodes(obj.myGroupIndex, el);
@@ -723,6 +738,12 @@ classdef PhaseFieldElectrolyte < BaseModel
 						dCOH = 0;
 					end
 
+% 					dCFE = 1;
+% 					if (CFE>Cmax)
+% 						CFE = Cmax;
+% 						dCFE = 0;
+% 					end
+
 					% reaction 1 
 					react(1,1)    = obj.ksurf(1,1)*CH *(1-theta)*exp(-obj.ksurf(1,3)*(obj.Em-phil-obj.ksurf(1,4))*obj.F_const/obj.R_const/obj.T_const);
 					dreact(1,1,2) = obj.ksurf(1,1)*CH *-1              *exp(-obj.ksurf(1,3)*(obj.Em-phil-obj.ksurf(1,4))*obj.F_const/obj.R_const/obj.T_const);
@@ -793,6 +814,9 @@ classdef PhaseFieldElectrolyte < BaseModel
 
 
 		function plotHeightData(obj, x_eval, h_est)
+% 			obj.Heights = zeros(length(obj.ActiveElems), obj.mesh.ipcount1D^2)+obj.h0;
+% 			obj.Normals = zeros(length(obj.ActiveElems), obj.mesh.ipcount1D^2,2);
+
 			figure(43191)
 			clf
 			subplot(3,1,1)
@@ -828,6 +852,16 @@ classdef PhaseFieldElectrolyte < BaseModel
 			drawnow();
 
 		end
+
+
+
+
+
+
+
+
+
+
 
 
 		function plotFields(obj, physics)

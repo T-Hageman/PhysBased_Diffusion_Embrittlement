@@ -1,38 +1,45 @@
 classdef PhaseFieldDamage < BaseModel
-    %PhaseFieldDamage Summary of this class goes here
-    %   Detailed explanation goes here
+    %Resolves the phase field evolution, and mechanical momentum balances.
+	%inputs required:
+	% physics_in{1}.type = "PhaseFieldDamage";
+    % physics_in{1}.Egroup = "Internal";
+    % physics_in{1}.young = 200e9;	%Youngs Modulus [Pa]
+    % physics_in{1}.poisson = 0.3;	%Poisson ratio [-]
+	% physics_in{1}.kmin = 1e-10;		%residual stiffness factor [-]
+	% physics_in{1}.l=l;				%Phase-field length scale [m]
+	% physics_in{1}.Gc=2.0e3;			%Fracture release energy [J/m^2]
+	% physics_in{1}.GDegrade = 0.9;	%Maximum hydrogen degradation factor
+	% physics_in{1}.NL = 1e6;			%Concentration of interstitial lattice sites [mol/m^3]
+	% physics_in{1}.gb = 30e3;		%Grain boundary binding energy [J/mol]
     
     properties
-        mesh
-        myName
-        myGroup
-        myGroupIndex
-        dofSpace
-        dofTypeIndices
+        mesh			%Pointer to mesh object
+        myName			%String with the name of this model
+        myGroup			%String indicating the element group this model operates on
+        myGroupIndex	%Index of element group
+        dofSpace		%Pointer to degree of freedom object
+        dofTypeIndices	%Indices of degrees of freedom associated with this model
         
-        poisson
-        young
-        D_el
-        myK
-		kmin
-		l
-		Gc
-		GDegrade
-		NL
-		gb
+        poisson	%Poisson ratio [-]
+        young	%youngs modulus [Pa]
+        D_el	%Linear-elastic-plane-strain-stiffness matrix
+		kmin	%residual stiffness [-]
+		l		%phase-field length scale [m]
+		Gc		%Fracture release energy
+		GDegrade%fracture energy degradation rate due to hydrogen
+		NL		%concentration of interstitial lattice sites
+		gb		%binding energy of grain boundaries
 
-		dx_Step
-		phi_step
-		CL_step
+		dx_Step		%step in which displacements are resolved
+		phi_step	%step in which phasefield variable is resolved
+		CL_step		%step in which lattice hydrogen concentration is resolved
 
-		doInit
+		doInit		%Flag to indicate whether first-time initialization has been performed
 
-		Hist
-		HistOld
+		Hist		%Eleastic energy history parameter of current increment
+		HistOld		%Eleastic energy history parameter of previous increment
 
-		LFrac
-
-		ndcons
+		LFrac		%Estimated crack length
 
 		T = 293.15;
 		R = 8.3144;
@@ -80,8 +87,6 @@ classdef PhaseFieldDamage < BaseModel
             D_el(4, 4) = a * 0.5 * (1.0 - 2.0*obj.poisson);
             
             obj.D_el = D_el;
-            
-            obj.myK = sparse(0,0);
 
 			obj.Hist = zeros(size(obj.mesh.Elementgroups{obj.myGroupIndex}.Elems, 1), obj.mesh.ipcount1D^2);
 			obj.HistOld = obj.Hist;
@@ -109,21 +114,13 @@ classdef PhaseFieldDamage < BaseModel
 						dst=sqrt((xy(2)-Hdom/2)^2+(xy(1)-Lfrac)^2);
 					end
 					
-% 					if (abs(dst)>100.001*obj.l)
-% 						pf = 0;
-% 					else
-						pf = exp(-abs(dst)/(obj.l));   %/2*obj.l
-% 					end
-					initvals(i) = pf;
+					pf = exp(-abs(dst)/(obj.l));  
 
-					if (initvals(i)>0.95)
-						nodecons(end+1,:) = [PhiDofs(i), 1];
-					end
+					initvals(i) = pf;
 				end
 
 				physics.StateVec{obj.phi_step}(PhiDofs) = initvals;
 				physics.StateVec_Old{obj.phi_step}(PhiDofs) = initvals;
-				obj.ndcons = nodecons;
 
 				%% set history field
 				for n_el=1:size(obj.mesh.Elementgroups{obj.myGroupIndex}.Elems, 1)
@@ -131,31 +128,15 @@ classdef PhaseFieldDamage < BaseModel
                 	[N, G, w] = obj.mesh.getVals(obj.myGroupIndex, n_el);
 					G2 = obj.mesh.getG2(obj.myGroupIndex, n_el);
 
-                	%dofsX = obj.dofSpace.getDofIndices(obj.dofTypeIndices(1), Elem_Nodes);
-                	%dofsY = obj.dofSpace.getDofIndices(obj.dofTypeIndices(2), Elem_Nodes);
-                	%dofsXY = [dofsX; dofsY];
 					dofsPhi = obj.dofSpace.getDofIndices(obj.dofTypeIndices(3), Elem_Nodes);
-
-                	%X = physics.StateVec{obj.dx_Step}(dofsX);
-                	%Y = physics.StateVec{obj.dx_Step}(dofsY);
-                	%XY = [X;Y];
 					PHI = physics.StateVec{obj.phi_step}(dofsPhi);
 
 					for ip=1:length(w)
 						NPhi = N(ip,:)*PHI;
 						GPhi = squeeze(G(ip,:,:))'*PHI;
-						LapPhi = abs((G2(ip,:,1)*PHI)+(G2(ip,:,2)*PHI));
 
-						%dam_fun = (1-obj.kmin)*(1-NPhi)^2+obj.kmin;
 						d_dam_fun = -2*(1-obj.kmin)*(1-NPhi);
-
-						%H = abs((NPhi/(obj.l)-obj.l*(GPhi'*GPhi))/(d_dam_fun+obj.kmin));
 						H = abs((NPhi/(obj.l)+obj.l*(GPhi'*GPhi))/(d_dam_fun+obj.kmin));
-% 						if (NPhi>0.95)
-% 							H = 1e6;
-% 						else
-% 							H=0;
-% 						end
 						
 						obj.Hist(n_el, ip) = H;
 						obj.HistOld(n_el, ip) = H;
@@ -238,9 +219,6 @@ classdef PhaseFieldDamage < BaseModel
 			if (stp == obj.phi_step)
             	fprintf("        PhaseFieldDamage get Matrix:")
             	t = tic;
-
-				%physics.condofs{obj.phi_step} = [physics.condofs{obj.phi_step}; obj.ndcons(:,1)];
-            	%physics.convals{obj.phi_step} = [physics.convals{obj.phi_step}; obj.ndcons(:,2)];
             	
             	dofmatX = [];
             	dofmatY = [];

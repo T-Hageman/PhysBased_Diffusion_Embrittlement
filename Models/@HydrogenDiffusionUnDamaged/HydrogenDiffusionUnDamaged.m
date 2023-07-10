@@ -1,32 +1,41 @@
 classdef HydrogenDiffusionUnDamaged < BaseModel
-    %HydrogenDiffusion Summary of this class goes here
-    %   Detailed explanation goes here
+    %HYDROGENDIFFUSION Physics model implementing the conservation of
+	%species within the metal interstitial lattice sites, assuming the material is UNDAMAGED
+	% , including diffusivity due to concentration gradients and hydrostatic stress
+	%gradients (NOT taking into account the current phase-field state). 
+	%Input properties required:
+	% physics_in{2}.type = "HydrogenDiffusionUnDamaged";
+	% physics_in{2}.Egroup = "Internal";
+    % physics_in{2}.DL = 1e-9;				%Diffusivity [m/s]
+	% physics_in{2}.NL = physics_in{1}.NL;	%Concentration of interstitial lattice sites [mol/m^3]	
+	% physics_in{2}.gb = physics_in{1}.gb;	%Grain boundary binding energy [J/mol]
+	% physics_in{2}.NT = 1e2;					%concentration of trapping sites
     
     properties
-        mesh
-        myName
-        myGroup
-        myGroupIndex
-        dofSpace
-        dofTypeIndices
+        mesh			%Pointer to mesh object
+        myName			%Name of this model
+        myGroup			%String indicating the element group this model operates on
+        myGroupIndex	%Index of the element group involved in this model
+        dofSpace		%pointer to degree of freedom space
+        dofTypeIndices	%Indices of degrees of freedom required by this model
         
-        DL
-		NL
-        poisson
-        young
+        DL			%Lattice diffusivity [m/s]
+		NL			%Interstitial lattice site concentration [mol/m^3]
+        poisson		%Poisson ratio of the metal [-]
+        young		%Youngs modulus of the metal [Pa]
 
-		gb
-		NT
+		gb			%binding energy of trapping sites
+		NT			%concentration of trapping sites [mol/m^3]
 
-		CL_int
-		CL_max
+		CL_int		%Current total hydrogen contents of the domain
+		CL_max		%Current maximum hydrogen concentration within the domain
 
-		R_const = 8.31446261815324;
-		T_const = 293.15;
-		VH_const = 2e-6;
+		R_const = 8.31446261815324;	%gas constant
+		T_const = 293.15;			%reference temperature
+		VH_const = 2e-6;			%hydrogen volume
 
-		dx_Step
-		C_Step
+		dx_Step		%Step in which displacements are resolved
+		C_Step		%step in which chemical sub-problem is resolved
     end
     
     methods

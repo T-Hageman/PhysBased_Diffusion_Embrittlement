@@ -1,26 +1,44 @@
 classdef ElectrolyteInterface < BaseModel
-    %ElectrolyteInterface Summary of this class goes here
-    %   Detailed explanation goes here
+    %ELECTROLYTEINTERFACE Physics model implementing surface reactions at
+	%the metal-electrolyte interface, and implementing the mass balance for
+	%the surface adsorbed hydrogen. The surface reactions resolved are the
+	%individual steps for the hydrogen evolution reaction, and the
+	%corrosion reaction (assuming neglible surface dissolution, and thus 
+	%not geometryically represented). The input parameters required for
+	%this model are:
+	%	physics_in{9}.type = "ElectrolyteInterface";
+    %	physics_in{9}.Egroup = "Interface";
+	%	physics_in{9}.NAds = 1e-3; % Concentration of surface sites [mol/m^2]
+	%	physics_in{9}.k = [	1e-4,	1e-10,	0.5,	0;   %reaction constants, [k, k', alpha, E_eq] for	Acidic Volmer
+	%						1e-10,	0,		0.3,	0;	 %											Acidic Heyrovsky
+	%						1e-6,	0,		0,		0;	 %											Tafel
+	%						1e3,	7e7,	0,		0;	 %											Absorbtion
+	%						1e-8,	1e-13,	0.5,	0;	 %											Basic Volmer
+	%						1e-10,	1e-14,	0.3,	0;   %											Basic Heyrovsky
+	%						3e-5/(2*96485.3329),3e-5/(2*96485.3329), 0.5, -0.4];   %				Corrosion
+	%	physics_in{9}.NL = physics_in{2}.NL; % Concentration of interstitial lattice sites [mol/m^3]
+	%	physics_in{9}.Em = 0.0; % Metal Potential [V_SHE]
+	%	physics_in{9}.Lumped = [1 1 1 1 1 1 1]; %Flags to enable lumped integration on a per-reaction basis
     
     properties
-        mesh
-        myName
-        myGroup
-        myGroupIndex
-        dofSpace
-        dofTypeIndices
+        mesh			%Pointer to mesh object
+        myName			%Name of this model (for identification purposes only)
+        myGroup			%String indicating which element group this model operates on
+        myGroupIndex	%Index of element group involved with this model
+        dofSpace		%Pointer to degree of freedom management object
+        dofTypeIndices	%Indices of degrees of freedom
 
-		k
-		Em
-		NL
-		NAds
-		Lumped
+		k				%Reaction rate matrix, [k, k', alpha, E_eq], 1 row per step in order: acidic volmer, acidic heyrovsky, tafel, absorbtion, basic volmer, basic heyrovsky, corrosion
+		Em				%Applied metal potential [V_SHE]
+		NL				%Concentration of interstitial lattice sites [mol/m^3]
+		NAds			%Concentration of surface adsorption sites [mol/m^2]
+		Lumped			%Flags to enable lumped inegration on a per-reaction basis
 
 		C_Step
 
-		F_const = 96485.3329;
-		R_const = 8.31446261815324;
-		T_const = 293.15;
+		F_const = 96485.3329;		%Faraday constant
+		R_const = 8.31446261815324;	%Gas constant
+		T_const = 293.15;			%Reference temperature
 
 		n_species
     end

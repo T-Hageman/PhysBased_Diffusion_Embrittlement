@@ -127,8 +127,7 @@ function [physics, tvec, CL_vec]  = main(irun)
 		physics_in{6}.Lumpedsurf = [1 1 1 1 1 1 1];			%Flags to indicate the use of lumped integration for surface reactions
 		physics_in{6}.h0 = 1e-12;							%small offset used to prevent ill-conditioned systems
 		physics_in{6}.Flowtype = model;						% Model to use for electrolyte diffusion, either Subgrid  WuLorenzis
-		physics_in{6}.l = physics_in{1}.l;					%Phase-field length scale
-		physics_in{6}.phi_trigger = -0.05;		%REMOVE THIS ONE			
+		physics_in{6}.l = physics_in{1}.l;					%Phase-field length scale	
 
 		%displacement constrain at left-top corner
 		physics_in{7}.type = "Constrainer";

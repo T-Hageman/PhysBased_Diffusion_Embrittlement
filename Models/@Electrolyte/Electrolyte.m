@@ -1,31 +1,42 @@
 classdef Electrolyte < BaseModel
-    %ElectrolyteFrac Summary of this class goes here
-    %   Detailed explanation goes here
+    %ELECTROLYTE Physics model resolving the nernst-planck mass
+	%conservation, and the electroneutrality condition. in addition, it
+	%resolves the bulk reactions (water auto-ionisation, and metal ion
+	%hydration) through either a lumped or non-lumped integration scheme.
+	%Required input Parameters:
+	%	physics_in{7}.type = "Electrolyte";
+    %	physics_in{7}.Egroup = "Electrolyte";
+    %	physics_in{7}.D = [9.3; 5.3; 1.3; 2; 1.4; 1]*1e-9;  % Diffusion coefficients [m/s] for ions: H OH Na CL Fe FeOH
+	%	physics_in{7}.z = [1; -1; 1; -1; 2; 1];	% ionic charges
+	%	physics_in{7}.pH0 = 5;	% Initial condition pH
+	%	physics_in{7}.NaCl = 0.6e3; % Initial concentration of NaCl
+	%	physics_in{7}.Lumped = [true; true]; % Flag for using lumped integration for water auto-ionisation and metal-ion reactions
+	%	physics_in{7}.k = [1e6; 1e-1; 1e-3; 1e-3]; % Reaction constants k_eq, k_fe, k_fe', k_feoh
     
     properties
-        mesh
-        myName
-        myGroup
-        myGroupIndex
-        dofSpace
-        dofTypeIndices
+        mesh			%Pointer to the mesh object
+        myName			%Name of this model
+        myGroup			%String to indicate the element group this model is applied to
+        myGroupIndex	%Index of the element group this model is applied to
+        dofSpace		%Pointer to the degree of freedom object
+        dofTypeIndices	%Indices to indicate the types of degree of freedom associated with the model
 
-		DoOnce
+		DoOnce			%Flag for initialization process that should only be performed once per simulation
 
-        D
-		z
-		k
-		Lumped
-		pH0
-		NaCl
+        D				%Diffusivities [m/s]
+		z				%ionic charges
+		k				%reaction constants
+		Lumped			%Flags to indicate the use of lumped integration
+		pH0				%initial conditions: pH
+		NaCl			%initial conditions: Salt concentration
 
-		F_const = 96485.3329;
-		R_const = 8.31446261815324;
-		T_const = 293.15;
+		F_const = 96485.3329;		%Faraday constant
+		R_const = 8.31446261815324;	%Gas constant
+		T_const = 293.15;			%reference temperature
 
-		n_species
+		n_species					%Number of ionic species considered within the model
 
-		C_step;
+		C_step;						%Step in which this physics odel is resolved
     end
     
     methods
