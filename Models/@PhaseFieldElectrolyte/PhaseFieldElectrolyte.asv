@@ -857,7 +857,7 @@ classdef PhaseFieldElectrolyte < BaseModel
             X(PHI<0.1) = nan;Y(PHI<0.1) = nan;
 			subplot(2,2,4)
 			patch(X',Y',FE',FE','FaceColor','interp','EdgeColor','interp');
-			title("Fe")
+			title("FeOH")
 			colorbar
 
 			subplot(2,2,3)
@@ -865,29 +865,29 @@ classdef PhaseFieldElectrolyte < BaseModel
 			title("E")
 			colorbar
 
-			subplot(2,2,1)
+			subplot(3,2,1)
 			H(H<=0)=NaN;
 			H(~isnan(H)) = -log10(H(~isnan(H))/1000); %
 			patch(X',Y',H',H','FaceColor','interp','EdgeColor','interp');
 			title("pH")
 			colorbar
 
-			% subplot(3,2,2)
-			% OH(OH<=0)=NaN;
-			% OH(~isnan(OH)) = -log10(OH(~isnan(OH))/1000); %
-			% patch(X',Y',OH',OH','FaceColor','interp','EdgeColor','interp');
-			% title("pOH")
-			% colorbar
+			subplot(3,2,2)
+			OH(OH<=0)=NaN;
+			OH(~isnan(OH)) = -log10(OH(~isnan(OH))/1000); %
+			patch(X',Y',OH',OH','FaceColor','interp','EdgeColor','interp');
+			title("pOH")
+			colorbar
 
-			subplot(2,2,2)
+			subplot(3,2,4)
 			patch(X',Y',T',T','FaceColor','interp','EdgeColor','interp');
 			title("\theta")
 			colorbar
 
-			% subplot(3,2,5)
-			% patch(X',Y',PHI',PHI','FaceColor','interp','EdgeColor','interp');
-			% title("\varphi")
-			% colorbar
+			subplot(3,2,5)
+			patch(X',Y',PHI',PHI','FaceColor','interp','EdgeColor','interp');
+			title("\varphi")
+			colorbar
 			
 		end
 

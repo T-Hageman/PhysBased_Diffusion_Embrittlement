@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.12.1)  10 JUL 2023 14:12
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.12.1)  11 JUL 2023 13:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -969,45 +969,41 @@ to.pdf>
 (epstopdf)                    size: 54411 bytes
 (epstopdf)             Command: <repstopdf --outfile=Figures/Generic_Domain_DOF
 s-eps-converted-to.pdf Figures/Generic_Domain_DOFs.eps>
-(epstopdf)             \includegraphics on input line 82.
+(epstopdf)             \includegraphics on input line 83.
 Package epstopdf Info: Output file is already uptodate.
-<Figures/Generic_Domain_DOFs-eps-converted-to.pdf, id=94, 603.25375pt x 208.78p
-t>
+<Figures/Generic_Domain_DOFs-eps-converted-to.pdf, id=102, 603.25375pt x 208.78
+pt>
 File: Figures/Generic_Domain_DOFs-eps-converted-to.pdf Graphic file (type pdf)
 <use Figures/Generic_Domain_DOFs-eps-converted-to.pdf>
 Package pdftex.def Info: Figures/Generic_Domain_DOFs-eps-converted-to.pdf  used
- on input line 82.
+ on input line 83.
 (pdftex.def)             Requested size: 455.24408pt x 157.55305pt.
- (./main.tdo)
-\tf@tdo=\write6
-\openout6 = `main.tdo'.
-
-
+ (./main.toc
 Overfull \hbox (2.22221pt too wide) has occurred while \output is active
 [] 
  []
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\<def>-command' on input line 87.
+(hyperref)                removing `\<def>-command' on input line 7.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\cnotenum' on input line 87.
+(hyperref)                removing `\cnotenum' on input line 7.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\<def>-command' on input line 87.
+(hyperref)                removing `\<def>-command' on input line 7.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\@corref' on input line 87.
+(hyperref)                removing `\@corref' on input line 7.
 
 [1{c:/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
- <./Figures/Generic_Domain_DOFs-eps-converted-to.pdf>] (./main.toc)
-\tf@toc=\write7
-\openout7 = `main.toc'.
+ <./Figures/Generic_Domain_DOFs-eps-converted-to.pdf>])
+\tf@toc=\write6
+\openout6 = `main.toc'.
 
  [2] (../main.m
 consecutive:
@@ -1017,7 +1013,7 @@ consecutive:
 consecutive:
 ) [3]
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 118.
+nput line 117.
  (../Models/@BaseModel/BaseModel.m
 consecutive:
 ) (../Models/@BaseModel/BaseModel.m
@@ -1049,17 +1045,35 @@ consecutive:
 consecutive:
 ) (../mainDiscreteFrac.m
 consecutive:
-) [7] (../@Mesh/Mesh.m
+) (../Models/@PhaseFieldDamage/PhaseFieldDamage.m
+consecutive:
+[7]) (../Models/@PhaseFieldDamage/PhaseFieldDamage.m
+consecutive:
+LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <8> not available
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 102.
+[8]) (../main.m
+consecutive:
+) (../main.m
+consecutive:
+) [9] (../main.m
+consecutive:
+) [10] (../Models/@PhaseFieldElectrolyte/PhaseFieldElectrolyte.m
+consecutive:
+) (../Models/@PhaseFieldElectrolyte/PhaseFieldElectrolyte.m
+consecutive:
+) (../Models/@PhaseFieldElectrolyte/PhaseFieldElectrolyte.m
+consecutive:
+) (../@Mesh/Mesh.m
 consecutive:
 ) (../@Physics/Physics.m
 consecutive:
+[11]) (../@Physics/Physics.m
+consecutive:
 ) (../@Physics/Physics.m
 consecutive:
-) [8] (../@Physics/Physics.m
-consecutive:
 ) (../@DofSpace/DofSpace.m
 consecutive:
-) (../@DofSpace/DofSpace.m
+[12]) (../@DofSpace/DofSpace.m
 consecutive:
 ) (../@DofSpace/DofSpace.m
 consecutive:
@@ -1067,22 +1081,114 @@ consecutive:
 consecutive:
 )
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 295.
- [9] (./main.bbl
-Underfull \hbox (badness 10000) in paragraph at lines 15--23
-\OT1/cmr/m/n/8 URL []$\OT1/cmtt/m/n/8 https : / / iopscience . iop . org / arti
-cle / 10 . 1149 / 1945-[]7111 / acb971https : / / iopscience . iop . org / arti
-cle / 10 .
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 51--59
-\OT1/cmr/m/n/8 URL []$\OT1/cmtt/m/n/8 https : / / doi . org / 10 . 1016 / j . i
-jfatigue . 2021 . 106521https : / / linkinghub . elsevier . com / retrieve / pi
-i /
- []
-
+put line 359.
+ (../main.m
+consecutive:
+[13])
+Package epstopdf Info: Source file: <Figures/Example_OpeningHeight.eps>
+(epstopdf)                    date: 2023-06-12 11:06:11
+(epstopdf)                    size: 93713 bytes
+(epstopdf)             Output file: <Figures/Example_OpeningHeight-eps-converte
+d-to.pdf>
+(epstopdf)                    date: 2023-07-10 16:14:11
+(epstopdf)                    size: 87573 bytes
+(epstopdf)             Command: <repstopdf --outfile=Figures/Example_OpeningHei
+ght-eps-converted-to.pdf Figures/Example_OpeningHeight.eps>
+(epstopdf)             \includegraphics on input line 382.
+Package epstopdf Info: Output file is already uptodate.
+<Figures/Example_OpeningHeight-eps-converted-to.pdf, id=570, 142.5325pt x 142.5
+325pt>
+File: Figures/Example_OpeningHeight-eps-converted-to.pdf Graphic file (type pdf
 )
+<use Figures/Example_OpeningHeight-eps-converted-to.pdf>
+Package pdftex.def Info: Figures/Example_OpeningHeight-eps-converted-to.pdf  us
+ed on input line 382.
+(pdftex.def)             Requested size: 142.53214pt x 142.53214pt.
+ (../Models/@PhaseFieldElectrolyte/PhaseFieldElectrolyte.m
+consecutive:
+) (../Models/@PhaseFieldElectrolyte/PhaseFieldElectrolyte.m
+consecutive:
+[14 <./Figures/Example_OpeningHeight-eps-converted-to.pdf>])
+(../Models/@PhaseFieldElectrolyte/PhaseFieldElectrolyte.m
+consecutive:
+) (../Models/@PhaseFieldElectrolyte/PhaseFieldElectrolyte.m
+consecutive:
+) [15] (../Models/@PhaseFieldElectrolyte/PhaseFieldElectrolyte.m
+consecutive:
+)
+Package epstopdf Info: Source file: <./Figures/Res_Static2.eps>
+(epstopdf)                    date: 2023-07-11 11:00:11
+(epstopdf)                    size: 1450819 bytes
+(epstopdf)             Output file: <./Figures/Res_Static2-eps-converted-to.pdf
+>
+(epstopdf)                    date: 2023-07-11 11:02:23
+(epstopdf)                    size: 379727 bytes
+(epstopdf)             Command: <repstopdf --outfile=./Figures/Res_Static2-eps-
+converted-to.pdf ./Figures/Res_Static2.eps>
+(epstopdf)             \includegraphics on input line 415.
+Package epstopdf Info: Output file is already uptodate.
+<./Figures/Res_Static2-eps-converted-to.pdf, id=661, 693.59125pt x 520.94624pt>
+
+File: ./Figures/Res_Static2-eps-converted-to.pdf Graphic file (type pdf)
+<use ./Figures/Res_Static2-eps-converted-to.pdf>
+Package pdftex.def Info: ./Figures/Res_Static2-eps-converted-to.pdf  used on in
+put line 415.
+(pdftex.def)             Requested size: 455.24408pt x 341.93373pt.
+Package epstopdf Info: Source file: <./Figures/Res_Static1.eps>
+(epstopdf)                    date: 2023-07-11 12:49:07
+(epstopdf)                    size: 970694 bytes
+(epstopdf)             Output file: <./Figures/Res_Static1-eps-converted-to.pdf
+>
+(epstopdf)                    date: 2023-07-11 12:50:07
+(epstopdf)                    size: 228640 bytes
+(epstopdf)             Command: <repstopdf --outfile=./Figures/Res_Static1-eps-
+converted-to.pdf ./Figures/Res_Static1.eps>
+(epstopdf)             \includegraphics on input line 421.
+Package epstopdf Info: Output file is already uptodate.
+<./Figures/Res_Static1-eps-converted-to.pdf, id=662, 692.5875pt x 316.18124pt>
+File: ./Figures/Res_Static1-eps-converted-to.pdf Graphic file (type pdf)
+<use ./Figures/Res_Static1-eps-converted-to.pdf>
+Package pdftex.def Info: ./Figures/Res_Static1-eps-converted-to.pdf  used on in
+put line 421.
+(pdftex.def)             Requested size: 341.43306pt x 155.87576pt.
+Package epstopdf Info: Source file: <./Figures/Res_Static4.eps>
+(epstopdf)                    date: 2023-07-11 13:00:39
+(epstopdf)                    size: 1134667 bytes
+(epstopdf)             Output file: <./Figures/Res_Static4-eps-converted-to.pdf
+>
+(epstopdf)                    date: 2023-07-11 13:01:59
+(epstopdf)                    size: 280207 bytes
+(epstopdf)             Command: <repstopdf --outfile=./Figures/Res_Static4-eps-
+converted-to.pdf ./Figures/Res_Static4.eps>
+(epstopdf)             \includegraphics on input line 433.
+Package epstopdf Info: Output file is already uptodate.
+<./Figures/Res_Static4-eps-converted-to.pdf, id=665, 860.21375pt x 317.185pt>
+File: ./Figures/Res_Static4-eps-converted-to.pdf Graphic file (type pdf)
+<use ./Figures/Res_Static4-eps-converted-to.pdf>
+Package pdftex.def Info: ./Figures/Res_Static4-eps-converted-to.pdf  used on in
+put line 433.
+(pdftex.def)             Requested size: 455.24408pt x 167.86523pt.
+Package epstopdf Info: Source file: <./Figures/Res_Static3.eps>
+(epstopdf)                    date: 2023-07-11 13:00:13
+(epstopdf)                    size: 2016930 bytes
+(epstopdf)             Output file: <./Figures/Res_Static3-eps-converted-to.pdf
+>
+(epstopdf)                    date: 2023-07-11 13:02:07
+(epstopdf)                    size: 543307 bytes
+(epstopdf)             Command: <repstopdf --outfile=./Figures/Res_Static3-eps-
+converted-to.pdf ./Figures/Res_Static3.eps>
+(epstopdf)             \includegraphics on input line 439.
+Package epstopdf Info: Output file is already uptodate.
+<./Figures/Res_Static3-eps-converted-to.pdf, id=666, 858.20625pt x 518.93875pt>
+
+File: ./Figures/Res_Static3-eps-converted-to.pdf Graphic file (type pdf)
+<use ./Figures/Res_Static3-eps-converted-to.pdf>
+Package pdftex.def Info: ./Figures/Res_Static3-eps-converted-to.pdf  used on in
+put line 439.
+(pdftex.def)             Requested size: 341.43306pt x 206.45534pt.
+ (./main.bbl [16] [17 <./Figures/Res_Static2-eps-converted-to.pdf> <./Figures/R
+es_Static1-eps-converted-to.pdf>] [18 <./Figures/Res_Static4-eps-converted-to.p
+df> <./Figures/Res_Static3-eps-converted-to.pdf>])
 
 Package natbib Warning: There were undefined citations.
 
@@ -1090,42 +1196,47 @@ Package natbib Warning: There were undefined citations.
 Package caption Warning: Unused \captionsetup[sub] on input line 14.
 See the caption package documentation for explanation.
 
-[10] (./main.aux)
+[19] (./main.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: DF0B1D7C15E72F6172EDA44FE77176E9;2788.
+(rerunfilecheck)             Checksum: 8C57222F44087F0F2BDF526A543D22BC;2959.
  ) 
 Here is how much of TeX's memory you used:
- 29640 strings out of 478353
- 542337 string characters out of 5852101
- 958769 words of memory out of 5000000
- 46981 multiletter control sequences out of 15000+600000
+ 30092 strings out of 478353
+ 551117 string characters out of 5852101
+ 1136156 words of memory out of 5000000
+ 47161 multiletter control sequences out of 15000+600000
  417269 words of font info for 78 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,21n,143p,686b,2308s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 99i,21n,143p,1434b,2314s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}<c:/tex
 live/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb><c:/texlive/202
 1/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/texlive/2021/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2021/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmmi5.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmmi7.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmm
-ib10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><
-c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive
-/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><c:/texlive/2021/texmf
--dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2021/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmsy10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmsy5.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
-6.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/
-texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/texlive/2
-021/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb><c:/texlive/2021/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb><c:/texlive/2021/texmf-dist/fonts
-/type1/public/amsfonts/euler/eurb10.pfb><c:/texlive/2021/texmf-dist/fonts/type1
-/public/cm-super/sftt0800.pfb>
-Output written on main.pdf (10 pages, 351332 bytes).
+ist/fonts/type1/public/amsfonts/cm/cmbx7.pfb><c:/texlive/2021/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmmi10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmmi5.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmm
+i7.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb><
+c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive
+/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2021/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><c:/texlive/2021/texmf-dist/font
+s/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2021/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmr7.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmr8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10
+.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb><c:/t
+exlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><c:/texlive/202
+1/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2021/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/texlive/2021/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmti8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmtt8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfont
+s/euler/eurb10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sftt
+0800.pfb>
+Output written on main.pdf (19 pages, 1918905 bytes).
 PDF statistics:
- 565 PDF objects out of 1000 (max. 8388607)
- 503 compressed objects within 6 object streams
- 234 named destinations out of 1000 (max. 500000)
- 186 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1378 PDF objects out of 1440 (max. 8388607)
+ 830 compressed objects within 9 object streams
+ 471 named destinations out of 1000 (max. 500000)
+ 227 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -22,12 +22,11 @@
 \Newlabel{mycorrespondingauthor}{1}
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Overview of the system simulated using the presented MATLAB code\relax }}{1}{figure.caption.2}\protected@file@percent }
 \@writefile{tdo}{\contentsline {todo}{update citeMe with correct reference once main paper is published}{1}{section*.1}\protected@file@percent }
-\pgfsyspdfmark {pgfid1}{19562754}{19337783}
+\pgfsyspdfmark {pgfid1}{19562754}{19295863}
+\citation{Hageman2023}
 \citation{Hageman2023a}
 \citation{Hageman2023b}
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{2}{section.1}\protected@file@percent }
-\@writefile{tdo}{\contentsline {todo}{Intro}{2}{section*.5}\protected@file@percent }
-\pgfsyspdfmark {pgfid2}{19562754}{22440330}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Basic usage}{2}{subsection.1.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {2}Summary of included files}{3}{section.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.1}main.m}{3}{subsection.2.1}\protected@file@percent }
@@ -41,6 +40,10 @@
 \citation{Planck1890}
 \citation{Sarkar2011,Feldberg2000}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.4}HydrogenDiffusionUnDamaged}{5}{subsubsection.2.2.4}\protected@file@percent }
+\newlabel{sec:hyd_undamaged}{{2.2.4}{5}{HydrogenDiffusionUnDamaged}{subsubsection.2.2.4}{}}
+\newlabel{sec:hyd_undamaged@cref}{{[subsubsection][4][2,2]2.2.4}{[1][4][]5}}
+\newlabel{eq:hyd_diff}{{4}{5}{HydrogenDiffusionUnDamaged}{equation.2.4}{}}
+\newlabel{eq:hyd_diff@cref}{{[equation][4][]4}{[1][4][]5}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.5}Electrolyte}{5}{subsubsection.2.2.5}\protected@file@percent }
 \newlabel{react:water}{{8}{5}{Electrolyte}{equation.2.8}{}}
 \newlabel{react:water@cref}{{[equation][8][]8}{[1][5][]5}}
@@ -83,24 +86,58 @@
 \newlabel{eq:react4@cref}{{[equation][27][]27}{[1][6][]6}}
 \newlabel{eq:react7}{{28}{6}{ElectrolyteInterface}{equation.2.28}{}}
 \newlabel{eq:react7@cref}{{[equation][28][]28}{[1][6][]6}}
+\citation{Miehe2010,Miehe2010a,Borden2012,Wu2016}
 \@writefile{lol}{\contentsline {lstlisting}{../mainDiscreteFrac.m}{7}{lstlisting.-13}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.7}HydrogenDiffusion}{7}{subsubsection.2.2.7}\protected@file@percent }
-\@writefile{tdo}{\contentsline {todo}{HydrogenDiffusion}{7}{section*.6}\protected@file@percent }
-\pgfsyspdfmark {pgfid3}{19562754}{22026484}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.8}PhasefieldDamage}{7}{subsubsection.2.2.8}\protected@file@percent }
-\@writefile{tdo}{\contentsline {todo}{PhasefieldDamage}{7}{section*.7}\protected@file@percent }
-\pgfsyspdfmark {pgfid4}{19562754}{19243176}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.9}PhasefieldElectrolyte}{7}{subsubsection.2.2.9}\protected@file@percent }
-\@writefile{tdo}{\contentsline {todo}{PhasefieldElectrolyte}{7}{section*.8}\protected@file@percent }
-\pgfsyspdfmark {pgfid5}{19562754}{16459869}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Mesh}{7}{subsection.2.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Shapes}{8}{subsection.2.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.5}Physics}{8}{subsection.2.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.6}Dofspace}{9}{subsection.2.6}\protected@file@percent }
-\@writefile{lol}{\contentsline {lstlisting}{../@DofSpace/DofSpace.m}{9}{lstlisting.-19}\protected@file@percent }
-\@writefile{lol}{\contentsline {lstlisting}{../@DofSpace/DofSpace.m}{9}{lstlisting.-20}\protected@file@percent }
-\@writefile{lol}{\contentsline {lstlisting}{../@DofSpace/DofSpace.m}{9}{lstlisting.-21}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.7}Solver}{9}{subsection.2.7}\protected@file@percent }
+\newlabel{eq:kmat}{{30}{7}{ElectrolyteInterface}{equation.2.30}{}}
+\newlabel{eq:kmat@cref}{{[equation][30][]30}{[1][7][]7}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.7}PhasefieldDamage}{7}{subsubsection.2.2.7}\protected@file@percent }
+\newlabel{eq:mom}{{31}{7}{PhasefieldDamage}{equation.2.31}{}}
+\newlabel{eq:mom@cref}{{[equation][31][]31}{[1][7][]7}}
+\newlabel{eq:phasefieldEvolution}{{32}{7}{PhasefieldDamage}{equation.2.32}{}}
+\newlabel{eq:phasefieldEvolution@cref}{{[equation][32][]32}{[1][7][]7}}
+\newlabel{eq:degradeFunction}{{34}{7}{PhasefieldDamage}{equation.2.34}{}}
+\newlabel{eq:degradeFunction@cref}{{[equation][34][]34}{[1][7][]7}}
+\newlabel{eq:initialization}{{35}{8}{PhasefieldDamage}{equation.2.35}{}}
+\newlabel{eq:initialization@cref}{{[equation][35][]35}{[1][8][]8}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.8}HydrogenDiffusion}{9}{subsubsection.2.2.8}\protected@file@percent }
+\citation{Wu2016}
+\citation{Hageman2023}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.9}PhasefieldElectrolyte}{10}{subsubsection.2.2.9}\protected@file@percent }
+\newlabel{sec:CrackElectrolyte}{{2.2.9}{10}{PhasefieldElectrolyte}{subsubsection.2.2.9}{}}
+\newlabel{sec:CrackElectrolyte@cref}{{[subsubsection][9][2,2]2.2.9}{[1][9][]10}}
+\newlabel{eq:electrolyte_nernstplanck}{{38}{10}{PhasefieldElectrolyte}{equation.2.38}{}}
+\newlabel{eq:electrolyte_nernstplanck@cref}{{[equation][38][]38}{[1][9][]10}}
+\newlabel{eq:electrolyte_neutrality}{{39}{10}{PhasefieldElectrolyte}{equation.2.39}{}}
+\newlabel{eq:electrolyte_neutrality@cref}{{[equation][39][]39}{[1][9][]10}}
+\newlabel{eq:electrolyte_surface}{{40}{10}{PhasefieldElectrolyte}{equation.2.40}{}}
+\newlabel{eq:electrolyte_surface@cref}{{[equation][40][]40}{[1][9][]10}}
+\newlabel{eq:betac}{{41}{10}{PhasefieldElectrolyte}{equation.2.41}{}}
+\newlabel{eq:betac@cref}{{[equation][41][]41}{[1][10][]10}}
+\newlabel{eq:betas}{{43}{10}{PhasefieldElectrolyte}{equation.2.43}{}}
+\newlabel{eq:betas@cref}{{[equation][43][]43}{[1][10][]10}}
+\@writefile{lol}{\contentsline {lstlisting}{../Models/@PhaseFieldElectrolyte/PhaseFieldElectrolyte.m}{11}{lstlisting.-20}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{../Models/@PhaseFieldElectrolyte/PhaseFieldElectrolyte.m}{11}{lstlisting.-21}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Mesh}{11}{subsection.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Shapes}{11}{subsection.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5}Physics}{11}{subsection.2.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.6}Dofspace}{12}{subsection.2.6}\protected@file@percent }
+\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Overview of solution method\relax }}{13}{algorithm.1}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{alg:solution_scheme}{{1}{13}{Overview of solution method\relax }{algorithm.1}{}}
+\newlabel{alg:solution_scheme@cref}{{[algorithm][1][]1}{[1][13][]13}}
+\@writefile{lol}{\contentsline {lstlisting}{../@DofSpace/DofSpace.m}{13}{lstlisting.-27}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{../@DofSpace/DofSpace.m}{13}{lstlisting.-28}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{../@DofSpace/DofSpace.m}{13}{lstlisting.-29}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.7}Solver}{13}{subsection.2.7}\protected@file@percent }
+\citation{Yoshioka2020,Chukwudozie2019}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Schematic overview of integrations performed to calculate the crack opening height\relax }}{14}{figure.caption.4}\protected@file@percent }
+\newlabel{fig:OpeningHeightsFig}{{2}{14}{Schematic overview of integrations performed to calculate the crack opening height\relax }{figure.caption.4}{}}
+\newlabel{fig:OpeningHeightsFig@cref}{{[figure][2][]2}{[1][14][]14}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Specifics: Fracture opening height}{14}{section.3}\protected@file@percent }
+\newlabel{sec:OpeningHeights}{{3}{14}{Specifics: Fracture opening height}{section.3}{}}
+\newlabel{sec:OpeningHeights@cref}{{[section][3][]3}{[1][14][]14}}
+\newlabel{eq:heightmapping}{{44}{14}{Specifics: Fracture opening height}{equation.3.44}{}}
+\newlabel{eq:heightmapping@cref}{{[equation][44][]44}{[1][14][]14}}
 \bibdata{references}
 \bibcite{Hageman2023}{{1}{}{{}}{{}}}
 \bibcite{Hageman2023a}{{2}{}{{}}{{}}}
@@ -108,22 +145,31 @@
 \bibcite{Oriani1974}{{4}{}{{}}{{}}}
 \bibcite{Martinez-Paneda2020}{{5}{}{{}}{{}}}
 \bibcite{Kristensen2020a}{{6}{}{{}}{{}}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Sample results}{16}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Static cracks}{16}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Propagating cracks}{16}{subsection.4.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Results produced by running \csqQQ {34}main{\_}Static(\csqQQ {34}Subgrid\csqQQ {34}, 5e-4, 1e-5)\csqQQ {34}. The first row shows the phase field, hydrostatic stress, and interstitial lattice hydrogen concentration. The second row shows the avarage hydrogen uptake over time, interstitial lattice concentration in the deformed configuration, and fracture length over time.\relax }}{17}{figure.caption.5}\protected@file@percent }
+\newlabel{res1}{{3}{17}{Results produced by running "main{\_}Static("Subgrid", 5e-4, 1e-5)". The first row shows the phase field, hydrostatic stress, and interstitial lattice hydrogen concentration. The second row shows the avarage hydrogen uptake over time, interstitial lattice concentration in the deformed configuration, and fracture length over time.\relax }{figure.caption.5}{}}
+\newlabel{res1@cref}{{[figure][3][]3}{[1][16][]17}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Results produced by running \csqQQ {34}main{\_}Static(\csqQQ {34}Subgrid\csqQQ {34}, 5e-4, 1e-5)\csqQQ {34}, showing the electrolyte pH, surface adsorbed hydrogen concentration, electrolyte potential and $\mathrm  {Fe}^{2+}$ concentration.\relax }}{17}{figure.caption.6}\protected@file@percent }
+\newlabel{res2}{{4}{17}{Results produced by running "main{\_}Static("Subgrid", 5e-4, 1e-5)", showing the electrolyte pH, surface adsorbed hydrogen concentration, electrolyte potential and $\mathrm {Fe}^{2+}$ concentration.\relax }{figure.caption.6}{}}
+\newlabel{res2@cref}{{[figure][4][]4}{[1][16][]17}}
 \bibcite{Golahmar2021}{{7}{}{{}}{{}}}
 \bibcite{Hageman2022}{{8}{}{{}}{{}}}
 \bibcite{Sarkar2011}{{9}{}{{}}{{}}}
 \bibcite{Feldberg2000}{{10}{}{{}}{{}}}
 \bibcite{Liu2014}{{11}{}{{}}{{}}}
+\bibcite{Miehe2010}{{12}{}{{}}{{}}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Results produced by running \csqQQ {34}main(1)\csqQQ {34}. The first row shows the phase field, hydrostatic stress, and interstitial lattice hydrogen concentration. The second row shows the avarage hydrogen uptake over time, interstitial lattice concentration in the deformed configuration, and fracture length over time.\relax }}{18}{figure.caption.7}\protected@file@percent }
+\newlabel{res3}{{5}{18}{Results produced by running "main(1)". The first row shows the phase field, hydrostatic stress, and interstitial lattice hydrogen concentration. The second row shows the avarage hydrogen uptake over time, interstitial lattice concentration in the deformed configuration, and fracture length over time.\relax }{figure.caption.7}{}}
+\newlabel{res3@cref}{{[figure][5][]5}{[1][16][]18}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Results produced by running \csqQQ {34}main(1)\csqQQ {34}, showing the electrolyte pH, surface adsorbed hydrogen concentration, electrolyte potential and $\mathrm  {Fe}^{2+}$ concentration.\relax }}{18}{figure.caption.8}\protected@file@percent }
+\newlabel{res4}{{6}{18}{Results produced by running "main(1)", showing the electrolyte pH, surface adsorbed hydrogen concentration, electrolyte potential and $\mathrm {Fe}^{2+}$ concentration.\relax }{figure.caption.8}{}}
+\newlabel{res4@cref}{{[figure][6][]6}{[1][16][]18}}
+\bibcite{Miehe2010a}{{13}{}{{}}{{}}}
+\bibcite{Borden2012}{{14}{}{{}}{{}}}
+\bibcite{Wu2016}{{15}{}{{}}{{}}}
+\bibcite{Yoshioka2020}{{16}{}{{}}{{}}}
+\bibcite{Chukwudozie2019}{{17}{}{{}}{{}}}
 \providecommand\NAT@force@numbers{}\NAT@force@numbers
-\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Overview of solution method\relax }}{10}{algorithm.1}\protected@file@percent }
-\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{alg:solution_scheme}{{1}{10}{Overview of solution method\relax }{algorithm.1}{}}
-\newlabel{alg:solution_scheme@cref}{{[algorithm][1][]1}{[1][9][]10}}
-\@writefile{toc}{\contentsline {section}{\numberline {3}Specifics: Fracture opening height}{10}{section.3}\protected@file@percent }
-\newlabel{sec:OpeningHeights}{{3}{10}{Specifics: Fracture opening height}{section.3}{}}
-\newlabel{sec:OpeningHeights@cref}{{[section][3][]3}{[1][9][]10}}
-\@writefile{tdo}{\contentsline {todo}{Opening heights}{10}{section*.9}\protected@file@percent }
-\pgfsyspdfmark {pgfid6}{19562754}{34210240}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Post-Processing and sample results}{10}{section.4}\protected@file@percent }
-\@writefile{tdo}{\contentsline {todo}{Section}{10}{section*.10}\protected@file@percent }
-\pgfsyspdfmark {pgfid7}{19562754}{30461946}
-\gdef \@abspage@last{10}
+\gdef \@abspage@last{19}

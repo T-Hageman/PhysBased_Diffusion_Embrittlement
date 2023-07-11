@@ -4,45 +4,46 @@ The top-level auxiliary file: main.aux
 The style file: elsarticle-num.bst
 Database file #1: references.bib
 Warning--I didn't find a database entry for "Planck1890"
-You've used 11 entries,
+Warning--empty journal in Oriani1974
+You've used 17 entries,
             2931 wiz_defined-function locations,
-            766 strings with 7833 characters,
-and the built_in function-call counts, 3588 in all, are:
-= -- 372
-> -- 101
+            813 strings with 8789 characters,
+and the built_in function-call counts, 5364 in all, are:
+= -- 556
+> -- 164
 < -- 0
-+ -- 41
-- -- 30
-* -- 275
-:= -- 528
-add.period$ -- 22
-call.type$ -- 11
-change.case$ -- 11
++ -- 66
+- -- 49
+* -- 387
+:= -- 774
+add.period$ -- 34
+call.type$ -- 17
+change.case$ -- 17
 chr.to.int$ -- 0
-cite$ -- 11
-duplicate$ -- 97
-empty$ -- 387
-format.name$ -- 40
-if$ -- 910
+cite$ -- 18
+duplicate$ -- 135
+empty$ -- 567
+format.name$ -- 65
+if$ -- 1356
 int.to.chr$ -- 0
-int.to.str$ -- 11
-missing$ -- 11
-newline$ -- 57
-num.names$ -- 11
-pop$ -- 48
+int.to.str$ -- 17
+missing$ -- 17
+newline$ -- 76
+num.names$ -- 17
+pop$ -- 68
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 198
+skip$ -- 320
 stack$ -- 0
-substring$ -- 238
-swap$ -- 16
+substring$ -- 387
+swap$ -- 17
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 0
-while$ -- 26
-width$ -- 13
-write$ -- 122
-(There was 1 warning)
+warning$ -- 1
+while$ -- 43
+width$ -- 19
+write$ -- 176
+(There were 2 warnings)

@@ -12,26 +12,19 @@ T.~Hageman, E.~Mart{\'{i}}nez-Pa{\~{n}}eda, {Stabilising Effects of Lumped
 \newblock
 
 \bibitem{Hageman2023a}
-T.~Hageman, E.~Mart{\'{i}}nez-Pa{\~{n}}eda,
-  \href{https://iopscience.iop.org/article/10.1149/1945-7111/acb971
-  https://iopscience.iop.org/article/10.1149/1945-7111/acb971/meta}{{Stabilising
-  Effects of Lumped Integration Schemes for the Simulation of Metal-Electrolyte
-  Reactions}}, Journal of The Electrochemical Society 170~(2) (2023) 021511.
+T.~Hageman, E.~Mart{\'{i}}nez-Pa{\~{n}}eda, {Stabilising Effects of Lumped
+  Integration Schemes for the Simulation of Metal-Electrolyte Reactions},
+  Journal of The Electrochemical Society 170~(2) (2023) 021511.
 \newblock
-\newline\urlprefix\url{https://iopscience.iop.org/article/10.1149/1945-7111/acb971
-  https://iopscience.iop.org/article/10.1149/1945-7111/acb971/meta}
 
 \bibitem{Hageman2023b}
-T.~Hageman, C.~Andrade, E.~Mart{\'{i}}nez-Pa{\~{n}}eda,
-  \href{https://linkinghub.elsevier.com/retrieve/pii/S0013468623008022}{{Corrosion
-  rates under charge-conservation conditions}}, Electrochimica Acta 461 (2023)
-  142624.
+T.~Hageman, C.~Andrade, E.~Mart{\'{i}}nez-Pa{\~{n}}eda, {Corrosion rates under
+  charge-conservation conditions}, Electrochimica Acta 461 (2023) 142624.
 \newblock
-\newline\urlprefix\url{https://linkinghub.elsevier.com/retrieve/pii/S0013468623008022}
 
 \bibitem{Oriani1974}
 R.~A. Oriani, P.~H. Josephic, {Equilibrium aspects of hydrogen-induced cracking
-  of steels}, Acta Metallurgica 22~(9) (1974) 1065--1074.
+  of steels} 22~(9) (1974) 1065--1074.
 \newblock
 
 \bibitem{Martinez-Paneda2020}
@@ -49,29 +42,21 @@ P.~K. Kristensen, C.~F. Niordson, E.~Mart{\'{i}}nez-Pa{\~{n}}eda, {A phase
 
 \bibitem{Golahmar2021}
 A.~Golahmar, P.~K. Kristensen, C.~F. Niordson, E.~Mart{\'{i}}nez-Pa{\~{n}}eda,
-  \href{https://doi.org/10.1016/j.ijfatigue.2021.106521
-  https://linkinghub.elsevier.com/retrieve/pii/S0142112321003765}{{A phase
-  field model for hydrogen-assisted fatigue}}, International Journal of Fatigue
-  154~(July 2021) (2022) 106521.
+  {A phase field model for hydrogen-assisted fatigue}, International Journal of
+  Fatigue 154~(July 2021) (2022) 106521.
 \newblock
-\newline\urlprefix\url{https://doi.org/10.1016/j.ijfatigue.2021.106521
-  https://linkinghub.elsevier.com/retrieve/pii/S0142112321003765}
 
 \bibitem{Hageman2022}
-T.~Hageman, E.~Mart{\'{i}}nez-Pa{\~{n}}eda,
-  \href{https://linkinghub.elsevier.com/retrieve/pii/S0010938X22005996}{{An
-  electro-chemo-mechanical framework for predicting hydrogen uptake in metals
-  due to aqueous electrolytes}}, Corrosion Science 208 (2022) 110681.
+T.~Hageman, E.~Mart{\'{i}}nez-Pa{\~{n}}eda, {An electro-chemo-mechanical
+  framework for predicting hydrogen uptake in metals due to aqueous
+  electrolytes}, Corrosion Science 208 (2022) 110681.
 \newblock
-\newline\urlprefix\url{https://linkinghub.elsevier.com/retrieve/pii/S0010938X22005996}
 
 \bibitem{Sarkar2011}
-S.~Sarkar, W.~Aquino,
-  \href{http://dx.doi.org/10.1016/j.electacta.2011.07.128}{{Electroneutrality
-  and ionic interactions in the modeling of mass transport in dilute
-  electrochemical systems}}, Electrochimica Acta 56~(24) (2011) 8969--8978.
+S.~Sarkar, W.~Aquino, {Electroneutrality and ionic interactions in the modeling
+  of mass transport in dilute electrochemical systems}, Electrochimica Acta
+  56~(24) (2011) 8969--8978.
 \newblock
-\newline\urlprefix\url{http://dx.doi.org/10.1016/j.electacta.2011.07.128}
 
 \bibitem{Feldberg2000}
 S.~W. Feldberg, {On the dilemma of the use of the electroneutrality constraint
@@ -83,6 +68,44 @@ S.~W. Feldberg, {On the dilemma of the use of the electroneutrality constraint
 Q.~Liu, A.~D. Atrens, Z.~Shi, K.~Verbeken, A.~Atrens, {Determination of the
   hydrogen fugacity during electrolytic charging of steel}, Corrosion Science
   87 (2014) 239--258.
+\newblock
+
+\bibitem{Miehe2010}
+C.~Miehe, M.~Hofacker, F.~Welschinger, {A phase field model for
+  rate-independent crack propagation: Robust algorithmic implementation based
+  on operator splits}, Computer Methods in Applied Mechanics and Engineering
+  199~(45-48) (2010) 2765--2778.
+\newblock
+
+\bibitem{Miehe2010a}
+C.~Miehe, F.~Welschinger, M.~Hofacker, {Thermodynamically consistent
+  phase-field models of fracture: Variational principles and multi-field FE
+  implementations}, International Journal for Numerical Methods in Engineering
+  83~(10) (2010) 1273--1311.
+\newblock
+
+\bibitem{Borden2012}
+M.~J. Borden, C.~V. Verhoosel, M.~A. Scott, T.~J. Hughes, C.~M. Landis, {A
+  phase-field description of dynamic brittle fracture}, Computer Methods in
+  Applied Mechanics and Engineering 217-220 (2012) 77--95.
+\newblock
+
+\bibitem{Wu2016}
+T.~Wu, L.~{De Lorenzis}, {A phase-field approach to fracture coupled with
+  diffusion}, Computer Methods in Applied Mechanics and Engineering 312 (2016)
+  196--223.
+\newblock
+
+\bibitem{Yoshioka2020}
+K.~Yoshioka, D.~Naumov, O.~Kolditz, {On crack opening computation in
+  variational phase-field models for fracture}, Computer Methods in Applied
+  Mechanics and Engineering 369 (2020) 113210.
+\newblock
+
+\bibitem{Chukwudozie2019}
+C.~Chukwudozie, B.~Bourdin, K.~Yoshioka, {A variational phase-field model for
+  hydraulic fracturing in porous media}, Computer Methods in Applied Mechanics
+  and Engineering 347 (2019) 957--982.
 \newblock
 
 \end{thebibliography}

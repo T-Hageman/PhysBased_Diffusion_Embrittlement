@@ -79,16 +79,15 @@ MATLAB, electrochemistry, phasefield, hydrogen embrittlement, finite element met
 \end{frontmatter}
 
 \begin{figure}
+	\centering
 	\includegraphics[width=16cm]{Figures/Generic_Domain_DOFs.eps}
 	\caption{Overview of the system simulated using the presented MATLAB code}
 \end{figure}
 
-\listoftodos
 \tableofcontents
 
 \section{Introduction}
-
-\todo{Intro}
+Development of cracks due to interactions with the environment is a common failure mechanism, with causes of this environment-induced failure including stress-corrosion-cracking and hydrogen embrittlement. Accurately predicting these phenomena does not only require capturing the metal and neighbouring electrolyte, but also requires the effects of newly created and propagating cracks to be captured. One framework enabling crack propagation in arbitrary directions and geometries is the phase field method, representing cracks in a smeared manner. While the mechanical side of phase field fracture models is well-developed, models to represent fluids and species contained within the cracks are usually of a more empirical nature (for instance, requiring fitting parameters that are problem-dependent). Here, we present a MATLAB implementation of a physics-based model for ionic diffusion and reactions within cracks compatible with the phase field framework. This physics-based model is described in \citeMe{}, where its ability to accurately predict hydrogen uptake and expected failure times is shown. In the remainder of this documentation, the physical models and mathematical objects included within this code will be detailed. Special attention is given to the manner in which crack opening heights are reconstructed, as this requires procedures that are non-standard in finite element methods.
 
 Note: as this code is developed along other codes, parts of this code (and the documentation) correspond to the codes accompanying \citep{Hageman2023a} (hydrogen absorption stabilised with lumped integration) and \citep{Hageman2023b} (corrosion under charge conservation conditions).
 
@@ -145,9 +144,10 @@ Notably, since the tangential matrix for linear-elasticity is constant, it is as
 with the force vector also being updated based on this locally saved stiffness matrix. 
 
 \subsubsection{HydrogenDiffusionUnDamaged}
+\label{sec:hyd_undamaged}
 This model implements the hydrogen mass conservation, through the diffusion equation \citep{Oriani1974, Martinez-Paneda2020, Kristensen2020a, Golahmar2021, Hageman2022}:
 \begin{equation}
-    \left( 1+\frac{N_\mathrm{T}/N_\mathrm{L} \exp\left(\Delta g_\mathrm{b}/RT\right)}{\left(C_\mathrm{L}/N_\mathrm{L}+\exp\left(\Delta g_\mathrm{b}/RT\right)\right)^2}\right) \dot{C_\mathrm{L}}-\bm{\nabla}\cdot\left(\frac{D_\mathrm{L}}{1-C_\mathrm{L}/N_\mathrm{L}}\bm{\nabla} C_\mathrm{L}\right) + \bm{\nabla} \cdot \left( \frac{D_\mathrm{L} C_\mathrm{L} \overline{V}_\mathrm{H}}{RT}\bm{\nabla}\sigma_\mathrm{H} \right) = 0
+    \left( 1+\frac{N_\mathrm{T}/N_\mathrm{L} \exp\left(\Delta g_\mathrm{b}/RT\right)}{\left(C_\mathrm{L}/N_\mathrm{L}+\exp\left(\Delta g_\mathrm{b}/RT\right)\right)^2}\right) \dot{C_\mathrm{L}}-\bm{\nabla}\cdot\left(\frac{D_\mathrm{L}}{1-C_\mathrm{L}/N_\mathrm{L}}\bm{\nabla} C_\mathrm{L}\right) + \bm{\nabla} \cdot \left( \frac{D_\mathrm{L} C_\mathrm{L} \overline{V}_\mathrm{H}}{RT}\bm{\nabla}\sigma_\mathrm{H} \right) = 0 \label{eq:hyd_diff}
 \end{equation}
 with the interstitial lattice hydrogen concentration $C_L$ indicated within the code by "CL". Input properties for this model constitute:
 \lstinputlisting[firstnumber=66,firstline=66,lastline=71,style=mystyle,title=mainDiscreteFrac.m]{../mainDiscreteFrac.m}
@@ -239,23 +239,87 @@ with the vector "Lumped" allowing for individual interface reactions to be eithe
 	k_{Vb} & k_{Vb}' & \alpha_{Vb} & E_{eq,Vb} \\ 
 	k_{Hb} & k_{Hb}' & \alpha_{Hb} & E_{eq,Hb} \\ 
 	k_{c} & k_{c}' & \alpha_{c} & E_{eq,c} \\ 
-	\end{bmatrix}
+	\end{bmatrix} \label{eq:kmat}
 \end{equation}
 with the empty entries not used within the model.
 
-\subsubsection{HydrogenDiffusion}
-\todo{HydrogenDiffusion}
-
 \subsubsection{PhasefieldDamage}
-\todo{PhasefieldDamage}
+This model implements the momentum conservation for a damaged linear-elastic material:
+\begin{equation}
+    0 = \bm{\nabla}  \cdot \left(d(\phi) \frac{\partial \psi_\mathrm{0}}{\partial \bm{\varepsilon}}\right)  \label{eq:mom}
+\end{equation}
+and the phase-field evolution equation \citep{Miehe2010,Miehe2010a,Borden2012,Wu2016}:
+\begin{equation}
+    \frac{\phi}{\ell} - \ell \bm{\nabla}^2\phi = - \frac{\partial d(\phi)}{\partial \phi} \mathcal{H} \qquad \mathrm{where} \qquad \mathcal{H} = \frac{\psi_\mathrm{0}}{G_\mathrm{c}(C_\mathrm{L})}, \; \, \dot{\mathcal{H}}>=0
+    \label{eq:phasefieldEvolution}
+\end{equation}
+using the linear-elastic energy function for an undamaged material:
+\begin{equation}
+\psi_0 = \mathbf{\varepsilon}:\mathcal{D}:\mathbf{\varepsilon}
+\end{equation}
+and the damage function:
+\begin{equation}
+    d(\phi) = k_\mathrm{0} + (1-k_\mathrm{0}) (1-\phi)^2 \label{eq:degradeFunction}
+\end{equation}
+Within this model, the displacement and phase-field damage variable can not be updated at the same time, instead requiring \cref{eq:mom,eq:phasefieldEvolution} to be set to different staggered solver steps. The history field required within this model is calculated each time the tangent matrix is assembled:
+\lstinputlisting[firstnumber=275,firstline=275,lastline=287,style=mystyle,title=Models/@PhaseFieldDamage/PhaseFieldDamage.m]{../Models/@PhaseFieldDamage/PhaseFieldDamage.m}
+and changes are committed to the new time increments once the phsics object calls its "Commit" function.
+
+For the initialization of the phase-field parameter, an estimated history field is set via:
+\begin{equation}
+    \phi^{\mathrm{init}} = \exp\left(-\left|\text{d}x\right|/\ell\right) 
+    \qquad \qquad 
+    \mathcal{H}^{\mathrm{init}} = \frac{1/\ell \; \; \mathbf{N}_\phi \bm{\upphi}^{\mathrm{init}} + \ell \left(\bm{\nabla}\mathbf{N}_\phi \bm{\upphi}^{\mathrm{init}}\right)^T\left(\bm{\nabla}\mathbf{N}_\phi \bm{\upphi}^{\mathrm{init}}\right)}{k_\mathrm{0}-2(1-k_{\mathrm{0}})\left(1-\mathbf{N}_{\phi}\bm{\upphi}^{\mathrm{init}}\right)} \label{eq:initialization}
+\end{equation}
+the first time the "OncePerStep" function is called:
+\lstinputlisting[firstnumber=97,firstline=97,lastline=148,style=mystyle,title=Models/@PhaseFieldDamage/PhaseFieldDamage.m]{../Models/@PhaseFieldDamage/PhaseFieldDamage.m}
+As can be seen, this initial field is set based on the fracture length "Lfrac", and inserted in the centre of the domain. 
+
+Input parameters that need to be set for this model are:
+\lstinputlisting[firstnumber=69,firstline=69,lastline=79,style=mystyle,title=main.m]{../main.m}
+
+\subsubsection{HydrogenDiffusion}
+Similar to the model presented in \cref{sec:hyd_undamaged} for hydrogen diffusion in undamaged materials, this model simulates the diffusion in damaged materials. While the governing equations displayed in \cref{eq:hyd_diff} are still being simulated, the hydrostatic stress gradient is now interacts with the phase-field damage as:
+\begin{equation}
+	\nabla\sigma_h = \frac{E}{3(1-2\nu)}\left(d(\phi)\bm{B}^*\mathbf{u}+\frac{\partial d(\phi)}{\partial \phi} \nabla \phi \overline{\bm{B}} \mathbf{u} \right)
+\end{equation}
+where
+\begin{equation}
+\overline{\bm{B}} = 
+\begin{bmatrix}
+	\frac{\partial N_{u1}}{\partial x} & \frac{\partial N_{u1}}{\partial x} & \cdot \cdot \cdot \frac{\partial N_{u1}}{\partial y} & \frac{\partial N_{u1}}{\partial y} & \cdot \cdot \cdot
+\end{bmatrix}
+\end{equation}
+
+Input parameters required for this model are:
+\lstinputlisting[firstnumber=81,firstline=81,lastline=88,style=mystyle,title=main.m]{../main.m}
 
 \subsubsection{PhasefieldElectrolyte}
-\todo{PhasefieldElectrolyte}
+\label{sec:CrackElectrolyte}
+This model simulates the Nernst-Planck and electroneutrelity equations, surface adsorbed hydrogen concentration, and bulk and volume reactions for a crack-contained electrolyte. This system is described by:
+\begin{align}
+    0 &= \beta_\mathrm{c} \dot{C}_{\pi} - \bm{\nabla} \cdot \left(\bm{R}^T\bm{\beta_\mathrm{d}}\bm{R} D_{\pi} \bm{\nabla} C_\pi \right) - \frac{z_\pi F}{RT}\bm{\nabla} \cdot \left(\bm{R}^T\bm{\beta_\mathrm{d}}\bm{R} D_{\pi} C_\pi \bm{\nabla} \varphi \right) + \beta_\mathrm{c} R_\pi  + \beta_\mathrm{s} \nu_\pi \label{eq:electrolyte_nernstplanck}\\
+    0 &= \beta_\mathrm{c} \sum_\pi z_\pi C_\pi \label{eq:electrolyte_neutrality} \\
+    0 & =\beta_\mathrm{s} \left(N_{\mathrm{ads}} \dot{\theta}_{\mathrm{ads}} - (\nu_{\mathrm{Va}}-\nu_{\mathrm{Va}}') + \nu_{\mathrm{Ha}} + 2 \nu_\mathrm{T} + (\nu_\mathrm{A}-\nu_\mathrm{A}') - (\nu_{\mathrm{Vb}}-\nu_{\mathrm{Vb}}') + \nu_{\mathrm{Hb}}\right) \label{eq:electrolyte_surface}
+\end{align}
+The capacity, diffusion, and surface distributors are accordingly defined as:
+\begin{alignat}{3}
+\nonumber & \mathbf{Distributed}\; \mathbf{diffusion} &&  \qquad\qquad && \mathbf{Physics}\mathbf{-}\mathbf{based} \\
+&\beta_\mathrm{c} = \phi^m && && \beta_\mathrm{c} = h \left( \frac{1}{2\ell}\phi^2+\frac{\ell}{2}\left|\bm{\nabla} \phi \right|^2 \right) \label{eq:betac} \\
+&\bm{\beta}_\mathrm{d} = \begin{bmatrix} \phi^m D_{\pi,2}/D_\pi & 0\\ 0 & 0 \end{bmatrix} && && \bm{\beta}_\mathrm{d} = \left( \frac{1}{2\ell}\phi^2+\frac{\ell}{2}\left|\bm{\nabla} \phi \right|^2 \right) \begin{bmatrix} h & 0\\ 0 & D_{\infty} \end{bmatrix} \\
+&\beta_\mathrm{s} = \frac{1}{\ell}\phi^2+\ell\left|\bm{\nabla} \phi \right|^2  && && \beta_\mathrm{s} = \frac{1}{\ell}\phi^2+\ell\left|\bm{\nabla} \phi \right|^2 \label{eq:betas}
+\end{alignat}
+where the distribution method is set within the code to either "WuLorenzis" for the distributed diffusion model described in \citep{Wu2016} or "Subgrid" for the physics-based model from this work \citep{Hageman2023}. The manner in which the crack opening height is obtained is described in detail in \cref{sec:OpeningHeights}. 
 
-
-
-
-
+Input parameters for this model are:
+\lstinputlisting[firstnumber=108,firstline=108,lastline=130,style=mystyle,title=main.m]{../main.m}
+where the surface reaction rates $k_{surf}$ follows the format from \cref{eq:kmat}. This model also implements post-processing functions specifically for the electro-chemical system contained within the crevasse:
+\lstinputlisting[firstnumber=795,firstline=795,lastline=795,style=mystyle,title=Models/@PhaseFieldElectrolyte/PhaseFieldElectrolyte.m]{../Models/@PhaseFieldElectrolyte/PhaseFieldElectrolyte.m}
+which plots the crack opening height and the crack-normal vectors,
+\lstinputlisting[firstnumber=833,firstline=833,lastline=833,style=mystyle]{../Models/@PhaseFieldElectrolyte/PhaseFieldElectrolyte.m}
+plotting electrolyte concentrations and the electrolyte potential, and
+\lstinputlisting[firstnumber=894,firstline=894,lastline=894,style=mystyle]{../Models/@PhaseFieldElectrolyte/PhaseFieldElectrolyte.m}
+plotting the pH of the electrolyte. This last function solely show results where $\phi>0.1$, filtering out the non-physical state of the electrolyte.
 
 \subsection{Mesh}
 This class contains the nodes and elements that describe the geometry, and provides support for evaluating shape functions. Within its implementation, it uses a multi-mesh approach, defining element groups for each entity within the domain (for instance, defining an element group "Interior" for the metal domain composed of surface elements, and defining an element group "Interface" composed of line elements which coincide with the electrolyte-metal interface). The geometry of the problem is defined through procedures within the mesh class.
@@ -308,14 +372,75 @@ which takes the name of the degree of freedom, and returns its index and the sta
 \State Go to next time increment
 \end{algorithmic}
 \end{algorithm}
-The solver class implements a iteratively staggered Newton-Raphson type nonlinear solver, including the ability to perform linear line-searches to improve the convergence rate and stability. During its creation, it gets linked to the physics object, such that it can automatically request updated tangential matrices. An example of the staggered solution scheme solved through this solver is shown in Algorith \ref{alg:solution_scheme}.
+The solver class implements a iteratively staggered Newton-Raphson type nonlinear solver, including the ability to perform linear line-searches to improve the convergence rate and stability. During its creation, it gets linked to the physics object, such that it can automatically request updated tangential matrices. An example of the staggered solution scheme solved through this solver is shown in Algorith \ref{alg:solution_scheme}. Input parameters controlling the solver behaviour are:
+\lstinputlisting[firstnumber=138,firstline=138,lastline=144,style=mystyle,title=main.m]{../main.m}
 
 \section{Specifics: Fracture opening height}
 \label{sec:OpeningHeights}
-\todo{Opening heights}
+\begin{figure}
+	\centering
+	\includegraphics{Figures/Example_OpeningHeight.eps}
+	\caption{Schematic overview of integrations performed to calculate the crack opening height}
+	\label{fig:OpeningHeightsFig}
+\end{figure}
 
-\section{Post-Processing and sample results}
-\todo{Section}
+Within the model for the crack-contained electrolyte, \cref{sec:CrackElectrolyte}, the estimated opening height of the crevasse is needed. These opening heights are calculated through an integral normal to the fracture surface \citep{Yoshioka2020, Chukwudozie2019}:
+\begin{equation}
+    h = \int \mathbf{u}\cdot\bm{\nabla}\phi \; \mathrm{d}n \label{eq:heightmapping}
+\end{equation}
+with the line along which this integral is performed shown in \cref{fig:OpeningHeightsFig}, and the normal vector based on the phase-field as:
+\begin{equation}
+    \bm{n} = \frac{\bm{\nabla}\phi}{\left|\bm{\nabla}\phi\right|}
+\end{equation}
+
+These integrals are implemented in:
+\lstinputlisting[firstnumber=196,firstline=196,lastline=203,style=mystyle,title=Models/@PhaseFieldElectrolyte/PhaseFieldElectrolyte.m]{../Models/@PhaseFieldElectrolyte/PhaseFieldElectrolyte.m}
+which fills the "Height" and "normals" matrices with the opening heights and normal vectors for all elements and all integration points. This function is only called once per staggered iteration step, as the phase-field and displacements are assumed to stay constant during the electro-chemical solution step. 
+
+First, the displacements and gradients within all integration points are determined:
+\lstinputlisting[firstnumber=205,firstline=205,lastline=233,style=mystyle,title=Models/@PhaseFieldElectrolyte/PhaseFieldElectrolyte.m]{../Models/@PhaseFieldElectrolyte/PhaseFieldElectrolyte.m}
+and these opening heights are used to construct interpolation functions:
+\lstinputlisting[firstnumber=235,firstline=235,lastline=244,style=mystyle,title=Models/@PhaseFieldElectrolyte/PhaseFieldElectrolyte.m]{../Models/@PhaseFieldElectrolyte/PhaseFieldElectrolyte.m}
+These interpolation functions are then used to construct an interpolation function for the crack opening height based on \cref{eq:heightmapping}, for instance when the crack path is solely horizontal:
+\lstinputlisting[firstnumber=246,firstline=246,lastline=255,style=mystyle,title=Models/@PhaseFieldElectrolyte/PhaseFieldElectrolyte.m]{../Models/@PhaseFieldElectrolyte/PhaseFieldElectrolyte.m}
+and finally the crack opening heights and normal vectors within integration points are produced as:
+\lstinputlisting[firstnumber=269,firstline=269,lastline=287,style=mystyle,title=Models/@PhaseFieldElectrolyte/PhaseFieldElectrolyte.m]{../Models/@PhaseFieldElectrolyte/PhaseFieldElectrolyte.m}
+It should be noted that this does not produce opening heights which exactly match to the expected opening based on the displacement and phase-field. However, as long as enough intermediate points are used (e.g. the 1000 points declared on line 248), these results will be virtually indistinguishable from the opening heights that could be calculated by evaluating the phase-field gradient and displacements exactly. The implementation presented here furthermore does not take into account branching cracks, instead assuming the phase-field tends towards zero away from the crack interface.
+
+\section{Sample results}
+
+\subsection{Static cracks}
+\begin{figure}
+	\centering
+	\includegraphics[width=16cm]{./Figures/Res_Static2.eps}
+	\caption{Results produced by running "main{\_}Static("Subgrid", 5e-4, 1e-5)". The first row shows the phase field, hydrostatic stress, and interstitial lattice hydrogen concentration. The second row shows the avarage hydrogen uptake over time, interstitial lattice concentration in the deformed configuration, and fracture length over time.}
+	\label{res1}
+\end{figure}
+\begin{figure}
+	\centering
+	\includegraphics[width=12cm]{./Figures/Res_Static1.eps}
+	\caption{Results produced by running "main{\_}Static("Subgrid", 5e-4, 1e-5)", showing the electrolyte pH, surface adsorbed hydrogen concentration, electrolyte potential and $\mathrm{Fe}^{2+}$ concentration.}
+	\label{res2}
+\end{figure}
+For verification cases using a static crack, a single simulatioin can be run via "main{\_}Static(model, l, u)", where model is either "Subgrid" or "WuLorenzis" for the physics-based or distributed diffusion models, l is the phase-field length scale, and u is the displacement (for instance, running "main{\_}Static("Subgrid", 5e-4, 1e-5)"). Once running, a folder is created in "./Results{\_}NoProp/" where output data is saved, and results are plotted after each converged time increment. Results after the first time increment are shown in \cref{res1,res2}. 
+
+In addition to running a single case, the file "DoSweep.m" performs a parametric sweep over the two models, and several external displacements and phase field length scales. It also runs simulations for a discrete representation of the crack, and creates a figure showing the comparison between the models. please note, as this function runs quite a few simulations, it takes a while to run fully.
+
+
+\subsection{Propagating cracks}
+\begin{figure}
+	\centering
+	\includegraphics[width=16cm]{./Figures/Res_Static4.eps}
+	\caption{Results produced by running "main(1)". The first row shows the phase field, hydrostatic stress, and interstitial lattice hydrogen concentration. The second row shows the avarage hydrogen uptake over time, interstitial lattice concentration in the deformed configuration, and fracture length over time.}
+	\label{res3}
+\end{figure}
+\begin{figure}
+	\centering
+	\includegraphics[width=12cm]{./Figures/Res_Static3.eps}
+	\caption{Results produced by running "main(1)", showing the electrolyte pH, surface adsorbed hydrogen concentration, electrolyte potential and $\mathrm{Fe}^{2+}$ concentration.}
+	\label{res4}
+\end{figure}
+The function "main.m" performs a simulation of a propagating crack in a square plate, using the parameters set in this main file. Please note that this function takes a while to run. Results after the first time increment are shown in \cref{res3,res4}. 
 
 \bibliography{references}
 

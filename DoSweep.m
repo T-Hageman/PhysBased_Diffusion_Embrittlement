@@ -21,7 +21,7 @@ t.Padding = 'compact';
 		model = m(modeli);
 		for ui=1:4
 		li = 0;
-		for l = 1e-3%5e-4:2.5e-4:1.25e-3
+		for l = 5e-4:2.5e-4:1.25e-3
 			li = li+1;
 
 				u=10^(-8+ui);
@@ -35,11 +35,11 @@ t.Padding = 'compact';
 		end
 	end
 	
-% 	if false
-% 		for i=i_in:i_in
-% 			[physics, tvec, CL_vec]  = main_Static(simsets{i}.model,simsets{i}.l,simsets{i}.u);
-% 		end
-% 	end
+ 	if true
+ 		for i=i_in:i_in
+ 			[physics, tvec, CL_vec]  = main_Static(simsets{i}.model,simsets{i}.l,simsets{i}.u);
+ 		end
+ 	end
 	figure(500002)
 	tiledlayout(1,2);
 	for i=1:length(simsets)

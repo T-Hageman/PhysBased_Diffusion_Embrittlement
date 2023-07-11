@@ -182,7 +182,7 @@ function [physics, tvec, CL_vec]  = main_Static(model, l, u)
     	
         	%close all
         	if mod(tstep, 1) == 0
-            	%plotres(physics, tvec, CL_vec, LFrac);
+				plotres(physics, tvec, CL_vec, LFrac);
 			end
         	if mod(tstep, 1) == 0
             	filename = savefolder+string(tstep);
