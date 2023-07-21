@@ -6,9 +6,10 @@
   \def\href#1#2{#2} \def\path#1{#1}\fi
 
 \bibitem{Hageman2023}
-T.~Hageman, E.~Mart{\'{i}}nez-Pa{\~{n}}eda, {Stabilising Effects of Lumped
-  Integration Schemes for the Simulation of Metal-Electrolyte Reactions},
-  Journal of The Electrochemical Society 170~(2) (2023) 021511.
+T.~Hageman, E.~Mart{\'{i}}nez-Pa{\~{n}}eda, {A phase field-based framework for
+  electro-chemo-mechanical fracture: Crack-contained electrolytes, chemical
+  reactions and stabilisation}, Computer Methods in Applied Mechanics and
+  Engineering 415 (2023) 116235.
 \newblock
 
 \bibitem{Hageman2023a}

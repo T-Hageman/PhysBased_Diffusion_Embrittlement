@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.12.1)  11 JUL 2023 13:04
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.12.1)  21 JUL 2023 09:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -946,15 +946,13 @@ Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
 Package csquotes Info: Making character " active on input line 56.
 \c@lstlisting=\count356
-Package hyperref Info: bookmark level for unknown todo defaults to 0 on input l
-ine 72.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 79.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 78.
 
 
 (c:/texlive/2021/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 79.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 78.
 
 
 (c:/texlive/2021/texmf-dist/tex/latex/amsfonts/umsb.fd
@@ -969,14 +967,14 @@ to.pdf>
 (epstopdf)                    size: 54411 bytes
 (epstopdf)             Command: <repstopdf --outfile=Figures/Generic_Domain_DOF
 s-eps-converted-to.pdf Figures/Generic_Domain_DOFs.eps>
-(epstopdf)             \includegraphics on input line 83.
+(epstopdf)             \includegraphics on input line 82.
 Package epstopdf Info: Output file is already uptodate.
 <Figures/Generic_Domain_DOFs-eps-converted-to.pdf, id=102, 603.25375pt x 208.78
 pt>
 File: Figures/Generic_Domain_DOFs-eps-converted-to.pdf Graphic file (type pdf)
 <use Figures/Generic_Domain_DOFs-eps-converted-to.pdf>
 Package pdftex.def Info: Figures/Generic_Domain_DOFs-eps-converted-to.pdf  used
- on input line 83.
+ on input line 82.
 (pdftex.def)             Requested size: 455.24408pt x 157.55305pt.
  (./main.toc
 Overfull \hbox (2.22221pt too wide) has occurred while \output is active
@@ -1013,7 +1011,7 @@ consecutive:
 consecutive:
 ) [3]
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 117.
+nput line 116.
  (../Models/@BaseModel/BaseModel.m
 consecutive:
 ) (../Models/@BaseModel/BaseModel.m
@@ -1029,7 +1027,7 @@ consecutive:
 )
 
 Package natbib Warning: Citation `Planck1890' on page 5 undefined on input line
- 163.
+ 162.
 
 (../mainDiscreteFrac.m
 consecutive:
@@ -1081,7 +1079,7 @@ consecutive:
 consecutive:
 )
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 359.
+put line 358.
  (../main.m
 consecutive:
 [13])
@@ -1094,15 +1092,15 @@ d-to.pdf>
 (epstopdf)                    size: 87573 bytes
 (epstopdf)             Command: <repstopdf --outfile=Figures/Example_OpeningHei
 ght-eps-converted-to.pdf Figures/Example_OpeningHeight.eps>
-(epstopdf)             \includegraphics on input line 382.
+(epstopdf)             \includegraphics on input line 381.
 Package epstopdf Info: Output file is already uptodate.
-<Figures/Example_OpeningHeight-eps-converted-to.pdf, id=570, 142.5325pt x 142.5
+<Figures/Example_OpeningHeight-eps-converted-to.pdf, id=569, 142.5325pt x 142.5
 325pt>
 File: Figures/Example_OpeningHeight-eps-converted-to.pdf Graphic file (type pdf
 )
 <use Figures/Example_OpeningHeight-eps-converted-to.pdf>
 Package pdftex.def Info: Figures/Example_OpeningHeight-eps-converted-to.pdf  us
-ed on input line 382.
+ed on input line 381.
 (pdftex.def)             Requested size: 142.53214pt x 142.53214pt.
  (../Models/@PhaseFieldElectrolyte/PhaseFieldElectrolyte.m
 consecutive:
@@ -1125,14 +1123,14 @@ Package epstopdf Info: Source file: <./Figures/Res_Static2.eps>
 (epstopdf)                    size: 379727 bytes
 (epstopdf)             Command: <repstopdf --outfile=./Figures/Res_Static2-eps-
 converted-to.pdf ./Figures/Res_Static2.eps>
-(epstopdf)             \includegraphics on input line 415.
+(epstopdf)             \includegraphics on input line 414.
 Package epstopdf Info: Output file is already uptodate.
-<./Figures/Res_Static2-eps-converted-to.pdf, id=661, 693.59125pt x 520.94624pt>
+<./Figures/Res_Static2-eps-converted-to.pdf, id=660, 693.59125pt x 520.94624pt>
 
 File: ./Figures/Res_Static2-eps-converted-to.pdf Graphic file (type pdf)
 <use ./Figures/Res_Static2-eps-converted-to.pdf>
 Package pdftex.def Info: ./Figures/Res_Static2-eps-converted-to.pdf  used on in
-put line 415.
+put line 414.
 (pdftex.def)             Requested size: 455.24408pt x 341.93373pt.
 Package epstopdf Info: Source file: <./Figures/Res_Static1.eps>
 (epstopdf)                    date: 2023-07-11 12:49:07
@@ -1143,13 +1141,13 @@ Package epstopdf Info: Source file: <./Figures/Res_Static1.eps>
 (epstopdf)                    size: 228640 bytes
 (epstopdf)             Command: <repstopdf --outfile=./Figures/Res_Static1-eps-
 converted-to.pdf ./Figures/Res_Static1.eps>
-(epstopdf)             \includegraphics on input line 421.
+(epstopdf)             \includegraphics on input line 420.
 Package epstopdf Info: Output file is already uptodate.
-<./Figures/Res_Static1-eps-converted-to.pdf, id=662, 692.5875pt x 316.18124pt>
+<./Figures/Res_Static1-eps-converted-to.pdf, id=661, 692.5875pt x 316.18124pt>
 File: ./Figures/Res_Static1-eps-converted-to.pdf Graphic file (type pdf)
 <use ./Figures/Res_Static1-eps-converted-to.pdf>
 Package pdftex.def Info: ./Figures/Res_Static1-eps-converted-to.pdf  used on in
-put line 421.
+put line 420.
 (pdftex.def)             Requested size: 341.43306pt x 155.87576pt.
 Package epstopdf Info: Source file: <./Figures/Res_Static4.eps>
 (epstopdf)                    date: 2023-07-11 13:00:39
@@ -1160,13 +1158,13 @@ Package epstopdf Info: Source file: <./Figures/Res_Static4.eps>
 (epstopdf)                    size: 280207 bytes
 (epstopdf)             Command: <repstopdf --outfile=./Figures/Res_Static4-eps-
 converted-to.pdf ./Figures/Res_Static4.eps>
-(epstopdf)             \includegraphics on input line 433.
+(epstopdf)             \includegraphics on input line 432.
 Package epstopdf Info: Output file is already uptodate.
-<./Figures/Res_Static4-eps-converted-to.pdf, id=665, 860.21375pt x 317.185pt>
+<./Figures/Res_Static4-eps-converted-to.pdf, id=664, 860.21375pt x 317.185pt>
 File: ./Figures/Res_Static4-eps-converted-to.pdf Graphic file (type pdf)
 <use ./Figures/Res_Static4-eps-converted-to.pdf>
 Package pdftex.def Info: ./Figures/Res_Static4-eps-converted-to.pdf  used on in
-put line 433.
+put line 432.
 (pdftex.def)             Requested size: 455.24408pt x 167.86523pt.
 Package epstopdf Info: Source file: <./Figures/Res_Static3.eps>
 (epstopdf)                    date: 2023-07-11 13:00:13
@@ -1177,14 +1175,14 @@ Package epstopdf Info: Source file: <./Figures/Res_Static3.eps>
 (epstopdf)                    size: 543307 bytes
 (epstopdf)             Command: <repstopdf --outfile=./Figures/Res_Static3-eps-
 converted-to.pdf ./Figures/Res_Static3.eps>
-(epstopdf)             \includegraphics on input line 439.
+(epstopdf)             \includegraphics on input line 438.
 Package epstopdf Info: Output file is already uptodate.
-<./Figures/Res_Static3-eps-converted-to.pdf, id=666, 858.20625pt x 518.93875pt>
+<./Figures/Res_Static3-eps-converted-to.pdf, id=665, 858.20625pt x 518.93875pt>
 
 File: ./Figures/Res_Static3-eps-converted-to.pdf Graphic file (type pdf)
 <use ./Figures/Res_Static3-eps-converted-to.pdf>
 Package pdftex.def Info: ./Figures/Res_Static3-eps-converted-to.pdf  used on in
-put line 439.
+put line 438.
 (pdftex.def)             Requested size: 341.43306pt x 206.45534pt.
  (./main.bbl [16] [17 <./Figures/Res_Static2-eps-converted-to.pdf> <./Figures/R
 es_Static1-eps-converted-to.pdf>] [18 <./Figures/Res_Static4-eps-converted-to.p
@@ -1204,10 +1202,10 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 8C57222F44087F0F2BDF526A543D22BC;2959.
  ) 
 Here is how much of TeX's memory you used:
- 30092 strings out of 478353
- 551117 string characters out of 5852101
- 1136156 words of memory out of 5000000
- 47161 multiletter control sequences out of 15000+600000
+ 30026 strings out of 478353
+ 549438 string characters out of 5852101
+ 1136134 words of memory out of 5000000
+ 47096 multiletter control sequences out of 15000+600000
  417269 words of font info for 78 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  99i,21n,143p,1434b,2314s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1233,10 +1231,10 @@ type1/public/amsfonts/cm/cmti8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/publ
 ic/amsfonts/cm/cmtt8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfont
 s/euler/eurb10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sftt
 0800.pfb>
-Output written on main.pdf (19 pages, 1918905 bytes).
+Output written on main.pdf (19 pages, 1918509 bytes).
 PDF statistics:
- 1378 PDF objects out of 1440 (max. 8388607)
- 830 compressed objects within 9 object streams
- 471 named destinations out of 1000 (max. 500000)
+ 1377 PDF objects out of 1440 (max. 8388607)
+ 829 compressed objects within 9 object streams
+ 470 named destinations out of 1000 (max. 500000)
  227 words of extra memory for PDF output out of 10000 (max. 10000000)
 
